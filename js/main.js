@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
       const filterValue = tab.getAttribute('data-filter');
 
       courseCards.forEach(card => {
-        const cardCategory = card.getAttribute('data-category');
-        if (filterValue === 'all' || cardCategory === filterValue) {
+        const cardCategory = card.getAttribute('data-category') || '';
+        if (filterValue === 'all' || cardCategory.split(' ').includes(filterValue)) {
           card.style.display = 'flex';
           card.style.animation = 'fadeIn 0.4s ease forwards';
         } else {
@@ -127,17 +127,85 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* --------------------------------------------------------------------------
+     3b. Special Batch Filter Tabs
+     -------------------------------------------------------------------------- */
+  const batchTabs = document.querySelectorAll('.batch-tab');
+  const flyerCards = document.querySelectorAll('.flyer-card');
+
+  batchTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      batchTabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      const filterValue = tab.getAttribute('data-batch-filter');
+
+      flyerCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-batch-category') || '';
+        if (filterValue === 'all' || cardCategory.split(' ').includes(filterValue)) {
+          card.style.display = 'flex';
+          card.style.animation = 'fadeIn 0.4s ease forwards';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  /* --------------------------------------------------------------------------
+     3c. Flyer Lightbox Triggers
+     -------------------------------------------------------------------------- */
+  flyerCards.forEach(card => {
+    const imgWrapper = card.querySelector('.flyer-image-wrapper');
+    const viewBtn = card.querySelector('.flyer-view-btn');
+    const img = card.querySelector('img');
+    const title = card.querySelector('.flyer-title') ? card.querySelector('.flyer-title').textContent : 'Official Announcement';
+    const hook = card.querySelector('.flyer-hook') ? card.querySelector('.flyer-hook').textContent : '';
+
+    const triggerLightbox = (e) => {
+      if (e && e.target && e.target.closest('[data-action="open-enroll-modal"]')) return;
+      if (lightboxModal && lightboxImg && img) {
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt || title;
+        if (lightboxCaption) {
+          lightboxCaption.innerHTML = `<strong>${title}</strong><br><small style="color: #cbd5e1;">${hook}</small>`;
+        }
+        lightboxModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    };
+
+    if (imgWrapper) {
+      imgWrapper.addEventListener('click', triggerLightbox);
+    }
+    if (viewBtn) {
+      viewBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        triggerLightbox(e);
+      });
+    }
+  });
+
+  /* --------------------------------------------------------------------------
      4. Admission Modal Popup Logic
      -------------------------------------------------------------------------- */
   function openModal(courseName = '') {
     if (modalBackdrop) {
       if (courseName && modalCourseSelect) {
         // Match course in select
+        let matched = false;
         for (let i = 0; i < modalCourseSelect.options.length; i++) {
-          if (modalCourseSelect.options[i].value === courseName || modalCourseSelect.options[i].text.includes(courseName)) {
+          const optVal = modalCourseSelect.options[i].value.toLowerCase();
+          const optText = modalCourseSelect.options[i].text.toLowerCase();
+          const target = courseName.toLowerCase();
+          if (optVal === target || optVal.includes(target) || target.includes(optVal) || optText.includes(target)) {
             modalCourseSelect.selectedIndex = i;
+            matched = true;
             break;
           }
+        }
+        if (!matched && modalCourseSelect.options.length > 0) {
+          modalCourseSelect.selectedIndex = 0;
         }
       }
       modalBackdrop.classList.add('open');
@@ -152,12 +220,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  enrollButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
+  // Delegated enroll button listener
+  document.addEventListener('click', (e) => {
+    const enrollBtn = e.target.closest('[data-action="open-enroll-modal"]');
+    if (enrollBtn) {
       e.preventDefault();
-      const selectedCourse = btn.getAttribute('data-course') || '';
+      const selectedCourse = enrollBtn.getAttribute('data-course') || '';
       openModal(selectedCourse);
-    });
+    }
   });
 
   if (modalCloseBtn) {
