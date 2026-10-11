@@ -27,6 +27,7 @@ function initApp() {
   initMyListDrawer();
   initAuthModals();
   initModals();
+  initGallery();
 }
 
 /* ==========================================================================
@@ -51,6 +52,7 @@ const translations = {
     navResearch: "Research",
     navScholars: "Scholars",
     navLive: "Live",
+    navGallery: "Gallery",
     navAbout: "About",
     loginBtn: "Login",
     joinBtn: "Join Al-Huda",
@@ -87,6 +89,7 @@ const translations = {
     navResearch: "البحوث",
     navScholars: "العلماء",
     navLive: "البث المباشر",
+    navGallery: "معرض الصور",
     navAbout: "عن المنصة",
     loginBtn: "تسجيل الدخول",
     joinBtn: "انضم إلى الهدى",
@@ -123,6 +126,7 @@ const translations = {
     navResearch: "تحقیقات",
     navScholars: "علمائے کرام",
     navLive: "براہِ راست",
+    navGallery: "تصویری گیلری",
     navAbout: "ہمارے بارے میں",
     loginBtn: "لاگ ان",
     joinBtn: "الہدٰی میں شامل ہوں",
@@ -1767,6 +1771,17 @@ window.enrollCourse = function(title) {
    ========================================================================== */
 let scholarsData = [
   {
+    id: 300,
+    name: "Sheikh Hafiz Saleem Sanabili Madani",
+    country: "Didwana, Rajasthan, India",
+    qualification: "Fazil, Islamic University of Madinah",
+    bio: "Senior Islamic scholar and orator holding classical degrees from the Islamic University of Madinah. Leading regular community Dars, Ramadan discourses, and authentic Islamic guidance.",
+    topics: ["Tafsir", "Hadith Sciences", "Ramadan Dars", "Community Guidance"],
+    lecturesCount: "250+ Lectures",
+    articlesCount: "18 Articles",
+    image: "images/live-lecture-recording.jpg"
+  },
+  {
     id: 301,
     name: "Sheikh Dr. Tariq Al-Hashimi",
     country: "Medina, Saudi Arabia",
@@ -2485,3 +2500,55 @@ function showToast(message) {
     setTimeout(() => toast.remove(), 300);
   }, 3500);
 }
+
+/* ==========================================================================
+   Campus, Dars & Community Gallery Engine
+   ========================================================================== */
+function initGallery() {
+  const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+  const items = document.querySelectorAll('.gallery-item');
+  if (filterBtns.length) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const filter = btn.dataset.filter;
+
+        items.forEach(item => {
+          if (filter === 'all' || item.dataset.category === filter) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      });
+    });
+  }
+
+  const lightboxModal = document.getElementById('imageLightboxModal');
+  const closeBtn = document.getElementById('lightboxCloseBtn');
+  if (closeBtn && lightboxModal) {
+    closeBtn.addEventListener('click', () => {
+      lightboxModal.classList.remove('open');
+    });
+    lightboxModal.addEventListener('click', (e) => {
+      if (e.target === lightboxModal) {
+        lightboxModal.classList.remove('open');
+      }
+    });
+  }
+}
+
+window.openLightbox = function(src, title, subtitle) {
+  const modal = document.getElementById('imageLightboxModal');
+  const img = document.getElementById('lightboxImg');
+  const titleEl = document.getElementById('lightboxTitle');
+  const subEl = document.getElementById('lightboxSub');
+  if (!modal || !img) return;
+
+  img.src = src;
+  if (titleEl) titleEl.textContent = title || '';
+  if (subEl) subEl.textContent = subtitle || '';
+  modal.classList.add('open');
+};
+

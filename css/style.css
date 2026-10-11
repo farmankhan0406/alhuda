@@ -3456,3 +3456,246 @@ textarea.form-control {
 .article-card.newly-added {
   animation: highlightNewArticle 2.5s ease-out;
 }
+
+/* ==========================================================================
+   Campus, Dars & Community Gallery Section
+   ========================================================================== */
+.gallery-section {
+  background-color: var(--ivory-100);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.gallery-filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+}
+
+.gallery-filter-btn {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  color: var(--charcoal-700);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.gallery-filter-btn:hover {
+  border-color: var(--gold-500);
+  color: var(--emerald-900);
+  background: var(--ivory-50);
+}
+
+.gallery-filter-btn.active {
+  background: var(--emerald-900);
+  color: var(--white);
+  border-color: var(--emerald-900);
+  box-shadow: 0 4px 14px rgba(4, 20, 14, 0.16);
+}
+
+.gallery-masonry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.gallery-item {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--charcoal-900);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+}
+
+.gallery-item:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-xl);
+}
+
+.gallery-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.gallery-item.featured-tall .gallery-img-wrap {
+  height: 380px;
+}
+
+.gallery-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover .gallery-img {
+  transform: scale(1.08);
+}
+
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(4, 20, 14, 0.2) 0%, rgba(4, 20, 14, 0.88) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 22px;
+  opacity: 1;
+  transition: background var(--transition-fast);
+}
+
+.gallery-item:hover .gallery-overlay {
+  background: linear-gradient(180deg, rgba(4, 20, 14, 0.3) 0%, rgba(4, 20, 14, 0.95) 100%);
+}
+
+.gallery-top-badges {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gallery-zoom-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 0.9rem;
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.gallery-item:hover .gallery-zoom-icon {
+  transform: scale(1.15);
+  background: var(--gold-500);
+  color: var(--charcoal-950);
+}
+
+.gallery-caption {
+  color: var(--white);
+}
+
+.gallery-item-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ivory-50);
+  margin-bottom: 6px;
+  line-height: 1.35;
+}
+
+.gallery-item-desc {
+  font-size: 0.8125rem;
+  color: var(--ivory-200);
+  line-height: 1.4;
+  opacity: 0.92;
+}
+
+/* Lightbox Modal */
+.lightbox-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 20, 14, 0.94);
+  backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lightbox-modal.open {
+  display: flex;
+}
+
+.lightbox-content-box {
+  position: relative;
+  max-width: 900px;
+  width: 100%;
+  max-height: 92vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--charcoal-950);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  animation: modalPop 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-img {
+  width: 100%;
+  max-height: 72vh;
+  object-fit: contain;
+  background: #000;
+}
+
+.lightbox-meta-bar {
+  padding: 18px 24px;
+  background: var(--charcoal-900);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lightbox-title {
+  color: var(--white);
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.lightbox-sub {
+  color: var(--gold-400);
+  font-size: 0.85rem;
+}
+
+.lightbox-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: var(--white);
+  font-size: 1.15rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  z-index: 10;
+}
+
+.lightbox-close-btn:hover {
+  background: var(--danger);
+  transform: rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .announcement-card-featured {
+    grid-column: span 1 !important;
+    grid-template-columns: 1fr !important;
+  }
+  .gallery-item.featured-tall .gallery-img-wrap {
+    height: 300px;
+  }
+}
+

@@ -94,6 +94,7 @@
         <a href="#research" class="nav-link" data-i18n="navResearch">Research</a>
         <a href="#scholars" class="nav-link" data-i18n="navScholars">Scholars</a>
         <a href="#live" class="nav-link" data-i18n="navLive">Live</a>
+        <a href="#gallery" class="nav-link" data-i18n="navGallery">Gallery</a>
       </nav>
 
       <!-- Right Header Actions (Search, Bookmarks, Language Switcher, Auth) -->
@@ -882,6 +883,37 @@
 
       <div class="announcements-grid">
         
+        <!-- Featured Ramadan Dars Announcement with Official Poster -->
+        <div class="announcement-card announcement-card-featured" style="grid-column: span 2; display: grid; grid-template-columns: 240px 1fr; gap: 24px; align-items: center; border-color: var(--gold-500); background: linear-gradient(135deg, var(--white) 0%, var(--ivory-100) 100%);">
+          <div style="border-radius: var(--radius-md); overflow: hidden; height: 100%; min-height: 230px; cursor: pointer; position: relative;" onclick="openLightbox('images/ramadan-dars-poster.jpg', 'Ramadan Dars — Daily After Taraweeh', 'Sheikh Hafiz Saleem Sanabili Madani (Fazil, Islamic University of Madinah) • Makkah Masjid, Chhoti Beri, Didwana')">
+            <img src="images/ramadan-dars-poster.jpg" alt="Ramadan Dars Poster" style="width: 100%; height: 100%; object-fit: cover; transition: transform var(--transition-smooth);" class="featured-thumb">
+            <div style="position: absolute; bottom: 10px; right: 10px; background: rgba(4, 20, 14, 0.75); color: #fff; padding: 3px 8px; border-radius: var(--radius-sm); font-size: 0.75rem;">
+              <i class="fa-solid fa-expand"></i> Enlarge
+            </div>
+          </div>
+          <div>
+            <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 8px; flex-wrap: wrap;">
+              <div class="announcement-date-pill"><i class="fa-regular fa-calendar"></i> Daily After Taraweeh</div>
+              <span class="badge badge-gold"><i class="fa-solid fa-moon"></i> Ramadan Special</span>
+            </div>
+            <h3 class="announcement-title" style="font-size: 1.35rem; color: var(--emerald-950); margin-bottom: 6px;">Ramadan Dars: Spiritual Lessons & Tafsir</h3>
+            <p style="font-size: 0.9375rem; color: var(--gold-700); font-weight: 600; margin-bottom: 8px;">
+              <i class="fa-solid fa-microphone-lines"></i> Speaker: Sheikh Hafiz Saleem Sanabili Madani <span style="font-size: 0.8125rem; color: var(--charcoal-600); font-weight: 500;">(Fazil, Islamic University of Madinah)</span>
+            </p>
+            <p class="announcement-body" style="margin-bottom: 14px;">
+              <strong>Venue:</strong> Makkah Masjid, Chhoti Beri, Didwana, India • <strong>Organized by:</strong> Local Jamiat Ahl-e-Hadith, Chhoti Beri, Didwana, Rajasthan (Contact: +91 8010195159). Authentic nightly dars examining Quranic guidance and Prophetic traditions.
+            </p>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+              <button class="btn btn-sm btn-gold" onclick="openLightbox('images/ramadan-dars-poster.jpg', 'Ramadan Dars — Daily After Taraweeh', 'Sheikh Hafiz Saleem Sanabili Madani • Makkah Masjid, Chhoti Beri, Didwana')">
+                <i class="fa-regular fa-image"></i> View Full Poster
+              </button>
+              <button class="btn btn-sm btn-outline-gold" onclick="setReminder('Ramadan Dars with Sheikh Hafiz Saleem Sanabili Madani')">
+                <i class="fa-regular fa-bell"></i> Set Daily Reminder
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="announcement-card">
           <div class="announcement-date-pill"><i class="fa-regular fa-calendar"></i> October 12, 2026</div>
           <span class="badge badge-gold" style="align-self: flex-start; margin-bottom: 10px;">Upcoming Lecture</span>
@@ -910,6 +942,117 @@
           <a href="#books" class="btn btn-sm btn-outline">
             <i class="fa-solid fa-book"></i> Read Excerpt
           </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       13. Dars, Events & Community Moments Gallery
+       ========================================================================== -->
+  <section class="section-padding gallery-section" id="gallery">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="section-kicker">Visual Showcase</span>
+        <h2 class="section-title">Campus, Dars & Community Moments</h2>
+        <p class="section-desc">Glimpses from our sacred knowledge gatherings, live broadcast recordings, and felicitation of honored guests.</p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="gallery-filter-bar">
+        <button class="gallery-filter-btn active" data-filter="all">All Moments</button>
+        <button class="gallery-filter-btn" data-filter="dars">Ramadan & Dars</button>
+        <button class="gallery-filter-btn" data-filter="recordings">Live Broadcasts</button>
+        <button class="gallery-filter-btn" data-filter="gatherings">Community & Guests</button>
+      </div>
+
+      <!-- Masonry Gallery Grid -->
+      <div class="gallery-masonry-grid" id="galleryGrid">
+        
+        <!-- Photo 1: Ramadan Dars Poster -->
+        <div class="gallery-item featured-tall" data-category="dars" onclick="openLightbox('images/ramadan-dars-poster.jpg', 'Ramadan Dars — Daily After Taraweeh', 'Sheikh Hafiz Saleem Sanabili Madani (Fazil, Islamic University of Madinah) • Makkah Masjid, Chhoti Beri, Didwana')">
+          <div class="gallery-img-wrap">
+            <img src="images/ramadan-dars-poster.jpg" alt="Ramadan Dars Poster" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <div class="gallery-top-badges">
+                <span class="badge badge-gold"><i class="fa-solid fa-moon"></i> Ramadan Dars</span>
+                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+              </div>
+              <div class="gallery-caption">
+                <h3 class="gallery-item-title">Ramadan Dars — Daily After Taraweeh</h3>
+                <p class="gallery-item-desc">Sheikh Hafiz Saleem Sanabili Madani • Makkah Masjid, Chhoti Beri, Didwana</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 2: Live Lecture Broadcast Recording -->
+        <div class="gallery-item" data-category="recordings" onclick="openLightbox('images/live-lecture-recording.jpg', 'Live Studio & Media Broadcast', 'High-definition live recording capturing authentic lectures and discourses for global broadcast')">
+          <div class="gallery-img-wrap">
+            <img src="images/live-lecture-recording.jpg" alt="Live Lecture Broadcast Recording" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <div class="gallery-top-badges">
+                <span class="badge badge-emerald"><i class="fa-solid fa-video"></i> Media Recording</span>
+                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+              </div>
+              <div class="gallery-caption">
+                <h3 class="gallery-item-title">Live Studio & Media Broadcast</h3>
+                <p class="gallery-item-desc">High-definition recording capturing authentic lectures and live knowledge circles</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 3: Gathering Hall -->
+        <div class="gallery-item" data-category="gatherings" onclick="openLightbox('images/lecture-gathering-hall.jpg', 'Seekers of Sacred Knowledge in Attendance', 'Community congregation and students attending beneficial spiritual discourse with devotion')">
+          <div class="gallery-img-wrap">
+            <img src="images/lecture-gathering-hall.jpg" alt="Community Lecture Gathering" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <div class="gallery-top-badges">
+                <span class="badge badge-gold"><i class="fa-solid fa-users"></i> Community Circle</span>
+                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+              </div>
+              <div class="gallery-caption">
+                <h3 class="gallery-item-title">Brothers & Seekers in Attendance</h3>
+                <p class="gallery-item-desc">Congregation gathered in the main hall listening attentively to the dars</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 4: Scholars Da'wah Assembly -->
+        <div class="gallery-item" data-category="dars" onclick="openLightbox('images/scholars-session.jpg', 'Scholarly Council & Da\'wah Session', 'Scholars seated at the podium delivering guidance and authentic knowledge (Dawa Al-Majmaah)')">
+          <div class="gallery-img-wrap">
+            <img src="images/scholars-session.jpg" alt="Scholars Da\'wah Session" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <div class="gallery-top-badges">
+                <span class="badge badge-emerald"><i class="fa-solid fa-book-open"></i> Scholarly Council</span>
+                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+              </div>
+              <div class="gallery-caption">
+                <h3 class="gallery-item-title">Da'wah & Knowledge Assembly</h3>
+                <p class="gallery-item-desc">Scholars seated at the podium delivering guidance and authentic knowledge</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Photo 5: Guests Felicitation -->
+        <div class="gallery-item" data-category="gatherings" onclick="openLightbox('images/guests-felicitation.jpg', 'Reception & Felicitation of Honored Guests', 'Warm hospitality and presentation of literature to visiting scholars and dignitaries')">
+          <div class="gallery-img-wrap">
+            <img src="images/guests-felicitation.jpg" alt="Guests Reception and Felicitation" class="gallery-img" loading="lazy">
+            <div class="gallery-overlay">
+              <div class="gallery-top-badges">
+                <span class="badge badge-gold"><i class="fa-solid fa-handshake"></i> Guests Felicitation</span>
+                <div class="gallery-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
+              </div>
+              <div class="gallery-caption">
+                <h3 class="gallery-item-title">Felicitation of Respected Guests</h3>
+                <p class="gallery-item-desc">Honoring visiting scholars and respected guests with warm hospitality</p>
+              </div>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1033,7 +1176,7 @@
       <!-- Live Broadcast Player Simulation -->
       <div class="live-broadcast-box">
         <div class="live-player-wrap">
-          <img src="images/lecture-banner.jpg" alt="Live Stream" class="live-player-img">
+          <img src="images/live-lecture-recording.jpg" alt="Live Broadcast Recording" class="live-player-img">
           
           <div class="live-stream-overlay">
             <span class="badge badge-live">
@@ -1046,13 +1189,13 @@
 
           <div class="live-bottom-bar">
             <div>
-              <div class="live-title-main">Tafsir of Surah Al-Kahf: Living Faith in Turbulent Times</div>
+              <div class="live-title-main">Ramadan Dars & Tafsir: Living Faith & Spiritual Devotion</div>
               <div style="font-size: 0.875rem; color: var(--gold-400); margin-top: 4px;">
-                <i class="fa-solid fa-microphone-lines"></i> Sheikh Dr. Tariq Al-Hashimi • Broadcasting Live from Medina
+                <i class="fa-solid fa-microphone-lines"></i> Sheikh Hafiz Saleem Sanabili Madani • Broadcasting Live Session
               </div>
             </div>
             <div>
-              <button class="btn btn-gold" onclick="openVideoPlayerModal(101)">
+              <button class="btn btn-gold" onclick="openLightbox('images/live-lecture-recording.jpg', 'Live Broadcast Session', 'Sheikh Hafiz Saleem Sanabili Madani • Broadcasting Live')">
                 <i class="fa-solid fa-expand"></i> Full Screen Mode
               </button>
             </div>
@@ -1512,17 +1655,20 @@
                     <button type="button" class="preset-thumb-btn active" data-img="images/classroom-study.jpg" title="Study Hall">
                       <img src="images/classroom-study.jpg" alt="Preset 1">
                     </button>
-                    <button type="button" class="preset-thumb-btn" data-img="images/quran-library.jpg" title="Quran Manuscript">
-                      <img src="images/quran-library.jpg" alt="Preset 2">
+                    <button type="button" class="preset-thumb-btn" data-img="images/ramadan-dars-poster.jpg" title="Ramadan Poster">
+                      <img src="images/ramadan-dars-poster.jpg" alt="Ramadan Poster">
                     </button>
-                    <button type="button" class="preset-thumb-btn" data-img="images/lecture-banner.jpg" title="Auditorium">
-                      <img src="images/lecture-banner.jpg" alt="Preset 3">
+                    <button type="button" class="preset-thumb-btn" data-img="images/live-lecture-recording.jpg" title="Live Recording">
+                      <img src="images/live-lecture-recording.jpg" alt="Live Recording">
                     </button>
-                    <button type="button" class="preset-thumb-btn" data-img="images/hero-cinematic.jpg" title="Islamic Arches">
-                      <img src="images/hero-cinematic.jpg" alt="Preset 4">
+                    <button type="button" class="preset-thumb-btn" data-img="images/lecture-gathering-hall.jpg" title="Audience Hall">
+                      <img src="images/lecture-gathering-hall.jpg" alt="Audience Hall">
                     </button>
-                    <button type="button" class="preset-thumb-btn" data-img="images/book-foundations.jpg" title="Book Cover">
-                      <img src="images/book-foundations.jpg" alt="Preset 5">
+                    <button type="button" class="preset-thumb-btn" data-img="images/scholars-session.jpg" title="Scholars Dais">
+                      <img src="images/scholars-session.jpg" alt="Scholars Dais">
+                    </button>
+                    <button type="button" class="preset-thumb-btn" data-img="images/guests-felicitation.jpg" title="Guests Reception">
+                      <img src="images/guests-felicitation.jpg" alt="Guests Reception">
                     </button>
                   </div>
 
@@ -1677,6 +1823,27 @@
     </div>
     <div id="myListItemsContainer" style="overflow-y: auto; flex-grow: 1;">
       <!-- Injected via JavaScript -->
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Interactive Fullscreen Lightbox Modal for Photo Gallery
+       ========================================================================== -->
+  <div class="lightbox-modal" id="imageLightboxModal">
+    <div class="lightbox-content-box">
+      <button class="lightbox-close-btn" id="lightboxCloseBtn" aria-label="Close Lightbox">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <img src="" id="lightboxImg" alt="Expanded Photo" class="lightbox-img">
+      <div class="lightbox-meta-bar">
+        <div>
+          <div class="lightbox-title" id="lightboxTitle"></div>
+          <div class="lightbox-sub" id="lightboxSub"></div>
+        </div>
+        <button class="btn btn-sm btn-gold" id="lightboxDownloadBtn" onclick="window.open(document.getElementById('lightboxImg').src, '_blank')">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full View
+        </button>
+      </div>
     </div>
   </div>
 
