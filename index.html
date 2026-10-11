@@ -1734,34 +1734,42 @@
                 Instant Transfer Details
               </h4>
 
-              <!-- UPI Box -->
+              <!-- UPI / Bank Transfer Notice -->
               <div class="upi-qr-display">
                 <div class="upi-qr-badge">
-                  <i class="fa-solid fa-qrcode"></i>
+                  <i class="fa-solid fa-building-columns"></i>
                 </div>
                 <div>
                   <div style="font-size: 0.78125rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--emerald-800); font-weight: 700;">
-                    Instant UPI (GPay / PhonePe / Paytm / BHIM)
+                    Instant Payment (GPay / PhonePe / Paytm / BHIM)
                   </div>
-                  <div style="font-weight: 700; font-size: 1rem; color: var(--charcoal-900); margin: 2px 0 6px;">
-                    <code>alhuda.research@upi</code>
+                  <div style="font-weight: 700; font-size: 0.95rem; color: var(--charcoal-900); margin: 3px 0 4px;">
+                    Pay via UPI: <strong>Transfer to Bank Account</strong>
                   </div>
-                  <button type="button" class="copy-pill-btn" onclick="copyToClipboard('alhuda.research@upi', 'UPI ID copied to clipboard!')">
-                    <i class="fa-regular fa-copy"></i> Copy UPI ID
-                  </button>
+                  <div style="font-size: 0.78125rem; color: var(--charcoal-600); margin-bottom: 8px;">
+                    In any UPI app, choose <em>"To Bank A/C"</em> & enter the A/C number & IFSC below.
+                  </div>
+                  <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+                    <button type="button" class="copy-pill-btn" onclick="copyToClipboard('39609354713', 'Account number copied to clipboard!')">
+                      <i class="fa-regular fa-copy"></i> Copy A/C No
+                    </button>
+                    <button type="button" class="copy-pill-btn" onclick="copyToClipboard('SBIN0061301', 'IFSC Code copied to clipboard!')">
+                      <i class="fa-regular fa-copy"></i> Copy IFSC
+                    </button>
+                  </div>
                 </div>
               </div>
 
               <!-- Bank Account Table -->
               <div style="font-size: 0.78125rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--charcoal-600); font-weight: 700; margin-bottom: 8px;">
-                Direct Bank Transfer (NEFT / RTGS / IMPS)
+                Direct Bank Transfer (NEFT / RTGS / IMPS / UPI)
               </div>
 
               <table class="bank-table">
                 <tbody>
                   <tr>
                     <td>Account Name:</td>
-                    <td>AL-HUDA ISLAMIC RESEARCH</td>
+                    <td><strong style="color: var(--emerald-950);">Mr Mohd Saleem</strong></td>
                   </tr>
                   <tr>
                     <td>Bank Name:</td>
@@ -1769,20 +1777,20 @@
                   </tr>
                   <tr>
                     <td>Account No:</td>
-                    <td><strong style="font-family: monospace; font-size: 0.95rem;">5020 0089 4210 93</strong></td>
+                    <td><strong style="font-family: monospace; font-size: 1.05rem; letter-spacing: 0.04em; color: var(--emerald-950);">39609354713</strong></td>
                   </tr>
                   <tr>
                     <td>IFSC Code:</td>
-                    <td><strong style="font-family: monospace; font-size: 0.95rem;">SBIN0001234</strong></td>
+                    <td><strong style="font-family: monospace; font-size: 1rem; color: var(--gold-700);">SBIN0061301</strong></td>
                   </tr>
                   <tr>
                     <td>Branch:</td>
-                    <td>Central Islamic Complex, Didwana</td>
+                    <td>Devla Nagli (Mewat)</td>
                   </tr>
                 </tbody>
               </table>
 
-              <button type="button" class="btn btn-sm btn-outline" style="width: 100%;" onclick="copyToClipboard('Account: 50200089421093 | Bank: State Bank of India | IFSC: SBIN0001234 | Name: AL-HUDA ISLAMIC RESEARCH', 'Full bank details copied to clipboard!')">
+              <button type="button" class="btn btn-sm btn-outline-gold" style="width: 100%; font-weight: 700;" onclick="copyToClipboard('Beneficiary: Mr Mohd Saleem | Bank: State Bank of India (SBI) | Account No: 39609354713 | IFSC: SBIN0061301 | Branch: Devla Nagli', 'All bank transfer details copied to clipboard!')">
                 <i class="fa-regular fa-copy"></i> Copy All Bank Details
               </button>
 
@@ -2535,6 +2543,10 @@
             <div>
               <span style="color: var(--charcoal-400); display: block; font-size: 0.75rem;">Date & Timestamp:</span>
               <span style="color: var(--charcoal-700);" id="receiptDate">October 11, 2026</span>
+            </div>
+            <div style="grid-column: 1 / -1; border-top: 1px dashed var(--border-light); padding-top: 8px;">
+              <span style="color: var(--charcoal-400); display: block; font-size: 0.75rem;">Official Beneficiary Account:</span>
+              <span style="color: var(--emerald-950); font-weight: 700;">Mr Mohd Saleem • State Bank of India (A/C: 39609354713 | IFSC: SBIN0061301)</span>
             </div>
           </div>
         </div>
