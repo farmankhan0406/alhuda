@@ -1,7 +1,7 @@
 /**
- * AL-HUDA — Comprehensive Islamic Knowledge & Media Platform
- * Core Engine & Interactive Logic
- * "Guidance for Life. Knowledge for Humanity."
+ * AL-HUDA-ISLAMIC-RESEARCH
+ * Authentic Islamic Knowledge, Research, Guidance & Media Platform
+ * "Authentic Islamic Knowledge, Research, Guidance & Media Platform"
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,6 +21,7 @@ function initApp() {
   initBooksLibrary();
   initResearchPortal();
   initAskScholarForm();
+  initDonationsSystem();
   initLiveCountdown();
   initGlobalAudioBar();
   initGlobalSearch();
@@ -35,12 +36,12 @@ function initApp() {
    ========================================================================== */
 const translations = {
   en: {
-    tagline: "Guidance for Life. Knowledge for Humanity.",
+    tagline: "Authentic Islamic Knowledge, Research, Guidance & Media Platform",
     bismillah: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-    heroBadge: "Comprehensive Islamic Knowledge & Media Platform",
+    heroBadge: "Authentic Islamic Knowledge, Research, Guidance & Media Platform",
     heroHeadline: "Discover Knowledge. Strengthen Faith. Find Guidance.",
     heroSubtitle: "Explore authentic Islamic knowledge through Qur’an, Hadith, lectures, research, books, courses and educational resources.",
-    exploreBtn: "Explore Al-Huda",
+    exploreBtn: "Explore AL-HUDA-ISLAMIC-RESEARCH",
     watchVideosBtn: "Watch Latest Videos",
     navHome: "Home",
     navQuran: "Qur’an",
@@ -51,12 +52,15 @@ const translations = {
     navBooks: "Books",
     navResearch: "Research",
     navScholars: "Scholars",
+    navAsk: "Ask Questions",
+    navDonate: "Donations",
+    navMedia: "Media Hub",
     navLive: "Live",
     navGallery: "Gallery",
     navAbout: "About",
     loginBtn: "Login",
-    joinBtn: "Join Al-Huda",
-    featuredTitle: "Featured on Al-Huda",
+    joinBtn: "Join Portal",
+    featuredTitle: "Featured on AL-HUDA-ISLAMIC-RESEARCH",
     categoriesTitle: "Explore Islamic Knowledge",
     articlesTitle: "Latest Articles",
     watchTitle: "Watch & Learn",
@@ -68,16 +72,16 @@ const translations = {
     booksTitle: "Islamic Books Library",
     researchTitle: "Islamic Research & Knowledge",
     announcementsTitle: "Announcements & Events",
-    askTitle: "Ask a Scholar",
+    askTitle: "Ask Questions to Scholars",
     liveTitle: "Live Islamic Sessions"
   },
   ar: {
-    tagline: "هُدىً لِلنَّاسِ وَبَيِّنَاتٍ مِّنَ الْهُدَىٰ وَالْفُرْقَانِ",
+    tagline: "المعرفة الإسلامية الأصيلة، البحوث والدراسات، الإرشاد والمنصة الإعلامية",
     bismillah: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-    heroBadge: "المنصة الشاملة للمعرفة الإسلامية والإعلام الهادف",
+    heroBadge: "منصة الهدى للبحوث الإسلامية والإعلام الهادف",
     heroHeadline: "اكتشف المعرفة. عمّق الإيمان. استنر بالهدى.",
     heroSubtitle: "استكشف كنوز العلوم الشرعية الأصيلة من خلال القرآن الكريم، الحديث النبوي، المحاضرات، البحوث، الكتب، والدورات العلمية المنهجية.",
-    exploreBtn: "استكشف منصة الهدى",
+    exploreBtn: "استكشف المنصة العلمية",
     watchVideosBtn: "شاهد أحدث المحاضرات",
     navHome: "الرئيسية",
     navQuran: "القرآن الكريم",
@@ -88,12 +92,15 @@ const translations = {
     navBooks: "المكتبة",
     navResearch: "البحوث",
     navScholars: "العلماء",
+    navAsk: "اسأل أهل الذكر",
+    navDonate: "التبرعات والصدقات",
+    navMedia: "المركز الإعلامي",
     navLive: "البث المباشر",
     navGallery: "معرض الصور",
     navAbout: "عن المنصة",
     loginBtn: "تسجيل الدخول",
-    joinBtn: "انضم إلى الهدى",
-    featuredTitle: "مختارات مميزة على الهدى",
+    joinBtn: "انضم إلى البوابة",
+    featuredTitle: "مختارات الهدى للبحوث الإسلامية",
     categoriesTitle: "استكشف أبواب العلوم الإسلامية",
     articlesTitle: "أحدث المقالات الشرعية",
     watchTitle: "شاهد وتعلم",
@@ -109,12 +116,12 @@ const translations = {
     liveTitle: "المجالس والبث المباشر"
   },
   ur: {
-    tagline: "زندگی کی رہنمائی۔ انسانیت کے لیے علم۔",
+    tagline: "مستند اسلامی علوم، تحقیق، رہنمائی اور میڈیا پلیٹ فارم",
     bismillah: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
-    heroBadge: "اسلامی علم اور میڈیا کا جامع عالمی پلیٹ فارم",
+    heroBadge: "الہدٰی اسلامک ریسرچ — مستند علمی و میڈیا پلیٹ فارم",
     heroHeadline: "علم حاصل کریں۔ ایمان مضبوط کریں۔ ہدایت پائیں۔",
     heroSubtitle: "قرآن، حدیث، خطبات، تحقیقی مقالات، کتب اور منظم کورسز کے ذریعے مستند اسلامی علوم تک رسائی حاصل کریں۔",
-    exploreBtn: "الہدٰی کا جائزہ لیں",
+    exploreBtn: "الہدٰی اسلامک ریسرچ کا جائزہ لیں",
     watchVideosBtn: "تازہ ترین ویڈیوز دیکھیں",
     navHome: "صفحہ اول",
     navQuran: "قرآن پاک",
@@ -125,12 +132,15 @@ const translations = {
     navBooks: "کتب خانہ",
     navResearch: "تحقیقات",
     navScholars: "علمائے کرام",
+    navAsk: "سوالات پوچھیں",
+    navDonate: "عطیات و صدقات",
+    navMedia: "میڈیا ہب",
     navLive: "براہِ راست",
     navGallery: "تصویری گیلری",
     navAbout: "ہمارے بارے میں",
     loginBtn: "لاگ ان",
-    joinBtn: "الہدٰی میں شامل ہوں",
-    featuredTitle: "الہدٰی کے خاص مضامین و خطبات",
+    joinBtn: "پورٹل میں شامل ہوں",
+    featuredTitle: "الہدٰی اسلامک ریسرچ کے خاص مضامین و خطبات",
     categoriesTitle: "اسلامی علوم کے ابواب",
     articlesTitle: "تازہ ترین مضامین",
     watchTitle: "دیکھیں اور سیکھیں",
@@ -723,8 +733,7 @@ const initialArticlesData = [
     id: 1,
     title: "Navigating Faith, Reason, and Modern Scientific Inquiry",
     category: "Contemporary Issues",
-    author: "Dr. Amina Khan",
-    authorAvatar: "images/scholar-portrait-2.jpg",
+    author: "AL-HUDA Islamic Research Department",
     date: "October 4, 2026",
     readTime: "7 min read",
     image: "images/classroom-study.jpg",
@@ -748,8 +757,7 @@ const initialArticlesData = [
     id: 2,
     title: "The Architecture of the Soul: An In-Depth Study of Tazkiyah",
     category: "Aqeedah & Spirituality",
-    author: "Sheikh Dr. Tariq Al-Hashimi",
-    authorAvatar: "images/scholar-portrait-1.jpg",
+    author: "Sheikh Hafiz Saleem Sanabili Madani",
     date: "September 28, 2026",
     readTime: "11 min read",
     image: "images/quran-library.jpg",
@@ -766,8 +774,7 @@ const initialArticlesData = [
     id: 3,
     title: "Fiqh of Financial Transactions in the Digital Age",
     category: "Islamic Finance",
-    author: "Sheikh Abdul Hakim",
-    authorAvatar: "images/scholar-portrait-3.jpg",
+    author: "AL-HUDA Fiqh & Fatwa Council",
     date: "September 15, 2026",
     readTime: "9 min read",
     image: "images/lecture-banner.jpg",
@@ -838,7 +845,9 @@ function renderArticles() {
         <p class="article-excerpt">${a.excerpt}</p>
         <div class="article-author-row">
           <div class="author-meta">
-            <img src="${a.authorAvatar}" alt="${a.author}" class="author-avatar" onerror="this.src='images/scholar-portrait-1.jpg'">
+            <div class="author-avatar-badge">
+              <i class="fa-solid fa-feather-pointed"></i>
+            </div>
             <span class="author-name">${a.author}</span>
           </div>
           <button class="btn btn-sm btn-primary" onclick="openArticleModal(${a.id})">
@@ -882,10 +891,12 @@ window.openArticleModal = function(id) {
         </h1>
         <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid var(--border-light); padding-bottom: 20px; margin-bottom: 28px; flex-wrap: wrap; gap: 12px;">
           <div style="display: flex; align-items: center; gap: 12px;">
-            <img src="${article.authorAvatar}" alt="${article.author}" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--gold-500); object-fit: cover;" onerror="this.src='images/scholar-portrait-1.jpg'">
+            <div class="author-avatar-badge" style="width: 44px; height: 44px; font-size: 1.15rem;">
+              <i class="fa-solid fa-feather-pointed"></i>
+            </div>
             <div>
               <div style="font-weight: 700; color: var(--charcoal-900);">${article.author}</div>
-              <div style="font-size: 0.8125rem; color: var(--emerald-800);">Verified Scholar & Contributor</div>
+              <div style="font-size: 0.8125rem; color: var(--emerald-800);">Verified Scholarly Contributor</div>
             </div>
           </div>
           <div style="display: flex; gap: 10px;">
@@ -1063,15 +1074,15 @@ function initArticleAdminPortal() {
       const title = titleInput.value.trim() || 'Untitled Article Preview';
       const category = categorySelect.value;
       const readTime = readTimeInput.value.trim() || '5 min read';
-      let authorName = 'Dr. Amina Khan';
-      let authorAvatar = 'images/scholar-portrait-2.jpg';
+      let authorName = 'Sheikh Hafiz Saleem Sanabili Madani';
+      let authorAvatar = '';
 
       if (authorSelect.value === 'custom') {
-        authorName = (customAuthorNameInput && customAuthorNameInput.value.trim()) || 'Guest Scholar';
+        authorName = (customAuthorNameInput && customAuthorNameInput.value.trim()) || 'Verified Scholar';
       } else {
         const parts = authorSelect.value.split('|');
         authorName = parts[0];
-        authorAvatar = parts[1] || authorAvatar;
+        authorAvatar = parts[1] || '';
       }
 
       const content = document.getElementById('articleFullContentInput').value.trim() || '<p>Article body is empty. Please enter your text in the content editor.</p>';
@@ -1109,7 +1120,9 @@ function initArticleAdminPortal() {
               ${tempPreview.title}
             </h1>
             <div style="display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--border-light); padding-bottom: 20px; margin-bottom: 28px;">
-              <img src="${tempPreview.authorAvatar}" alt="${tempPreview.author}" style="width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--gold-500); object-fit: cover;" onerror="this.src='images/scholar-portrait-1.jpg'">
+              <div style="width: 44px; height: 44px; border-radius: 50%; background: var(--emerald-800); border: 2px solid var(--gold-500); display: flex; align-items: center; justify-content: center; color: var(--gold-400); font-size: 1.1rem; flex-shrink: 0;">
+                <i class="fa-solid fa-graduation-cap"></i>
+              </div>
               <div>
                 <div style="font-weight: 700; color: var(--charcoal-900);">${tempPreview.author}</div>
                 <div style="font-size: 0.8125rem; color: var(--emerald-800);">Verified Scholar & Contributor</div>
@@ -1149,16 +1162,16 @@ function initArticleAdminPortal() {
       const imageUrl = urlInput.value.trim() || 'images/classroom-study.jpg';
       const fullText = document.getElementById('articleFullContentInput').value.trim();
 
-      let authorName = 'Dr. Amina Khan';
-      let authorAvatar = 'images/scholar-portrait-2.jpg';
+      let authorName = 'Sheikh Hafiz Saleem Sanabili Madani';
+      let authorAvatar = '';
 
       if (authorSelect.value === 'custom') {
         authorName = (customAuthorNameInput && customAuthorNameInput.value.trim()) || 'Verified Contributor';
-        authorAvatar = 'images/scholar-portrait-1.jpg';
+        authorAvatar = '';
       } else {
         const parts = authorSelect.value.split('|');
         authorName = parts[0];
-        authorAvatar = parts[1] || authorAvatar;
+        authorAvatar = parts[1] || '';
       }
 
       const formattedDate = new Date().toLocaleDateString('en-US', {
@@ -1427,7 +1440,7 @@ const videoPlatformData = [
   {
     id: 101,
     title: "Tafsir Surah Al-Kahf: Fortress of Faith in the Modern Age",
-    speaker: "Dr. Tariq Al-Hashimi",
+    speaker: "Sheikh Hafiz Saleem Sanabili Madani",
     duration: "52:14",
     views: "185K views",
     date: "3 days ago",
@@ -1438,7 +1451,7 @@ const videoPlatformData = [
   {
     id: 102,
     title: "The Sealed Nectar: Lessons from the Migration (Hijrah)",
-    speaker: "Dr. Amina Khan",
+    speaker: "Sheikh Hafiz Saleem Sanabili Madani",
     duration: "41:30",
     views: "92K views",
     date: "1 week ago",
@@ -1449,7 +1462,7 @@ const videoPlatformData = [
   {
     id: 103,
     title: "Purification of Intentions: The First Hadith in Bukhari",
-    speaker: "Sheikh Abdul Hakim",
+    speaker: "Sheikh Hafiz Saleem Sanabili Madani",
     duration: "34:50",
     views: "140K views",
     date: "2 weeks ago",
@@ -1460,34 +1473,34 @@ const videoPlatformData = [
   {
     id: 104,
     title: "Principles of Islamic Jurisprudence (Usul al-Fiqh) Explained",
-    speaker: "Dr. Bilal Philips",
+    speaker: "AL-HUDA Islamic Jurisprudence Council",
     duration: "58:05",
     views: "210K views",
     date: "1 month ago",
     category: "Fiqh",
-    thumb: "images/scholar-portrait-1.jpg",
+    thumb: "images/classroom-study.jpg",
     desc: "Understanding the hierarchical consensus, analogical reasoning (Qiyas), and textual proofs that govern Islamic jurisprudence."
   },
   {
     id: 105,
     title: "How to Address Skepticism & Intellectual Doubts in Da’wah",
-    speaker: "Dr. Tariq Al-Hashimi",
+    speaker: "Sheikh Hafiz Saleem Sanabili Madani",
     duration: "47:20",
     views: "78K views",
     date: "1 month ago",
     category: "Da’wah",
-    thumb: "images/classroom-study.jpg",
+    thumb: "images/lecture-banner.jpg",
     desc: "Compassionate, articulate dialogue methodologies for conveying the message of Islam with wisdom and exemplary manners."
   },
   {
     id: 106,
     title: "The Golden Age of Islamic Science, Medicine, and Astronomy",
-    speaker: "Dr. Amina Khan",
+    speaker: "AL-HUDA Islamic Research Department",
     duration: "1:04:12",
     views: "320K views",
     date: "2 months ago",
     category: "Islamic History",
-    thumb: "images/lecture-banner.jpg",
+    thumb: "images/hero-cinematic.jpg",
     desc: "A visual tour of the House of Wisdom in Baghdad and the royal observatories of Cordoba and Damascus."
   }
 ];
@@ -1600,7 +1613,7 @@ const coursesData = [
   {
     id: 201,
     title: "Understanding the Qur’an: Thematic Study",
-    instructor: "Sheikh Dr. Tariq Al-Hashimi",
+    instructor: "Sheikh Hafiz Saleem Sanabili Madani",
     lessons: 24,
     duration: "18 Hours",
     level: "Beginner",
@@ -1612,55 +1625,55 @@ const coursesData = [
   {
     id: 202,
     title: "Introduction to Hadith & Uloom al-Hadith",
-    instructor: "Sheikh Abdul Hakim",
+    instructor: "Sheikh Hafiz Saleem Sanabili Madani",
     lessons: 18,
     duration: "14 Hours",
     level: "Intermediate",
     category: "Hadith Studies",
-    thumb: "images/scholar-portrait-3.jpg",
+    thumb: "images/hero-cinematic.jpg",
     desc: "Demystifying the rigorous preservation of the prophetic tradition, Sanad criticism, and biographical evaluation (Ilm ar-Rijal).",
     progress: 0
   },
   {
     id: 203,
     title: "Life of Prophet Muhammad ﷺ (The Sealed Nectar)",
-    instructor: "Dr. Amina Khan",
+    instructor: "Sheikh Hafiz Saleem Sanabili Madani",
     lessons: 30,
     duration: "26 Hours",
     level: "All Levels",
     category: "Seerah",
-    thumb: "images/hero-cinematic.jpg",
+    thumb: "images/classroom-study.jpg",
     desc: "An inspiring chronologically sequenced journey through the blessed life, character, and legacy of the Messenger of Allah ﷺ.",
     progress: 75
   },
   {
     id: 204,
     title: "Foundations of Aqeedah: Belief & Conviction",
-    instructor: "Dr. Bilal Philips",
+    instructor: "AL-HUDA Research Faculty",
     lessons: 16,
     duration: "12 Hours",
     level: "Beginner",
     category: "Aqeedah",
-    thumb: "images/scholar-portrait-1.jpg",
+    thumb: "images/quran-library.jpg",
     desc: "Comprehensive clarity on the six pillars of faith, Tawheed, and resolving philosophical doubts with poise.",
     progress: 10
   },
   {
     id: 205,
     title: "Fiqh for Everyday Life: Purification & Prayer",
-    instructor: "Sheikh Dr. Tariq Al-Hashimi",
+    instructor: "Sheikh Hafiz Saleem Sanabili Madani",
     lessons: 20,
     duration: "15 Hours",
     level: "Beginner",
     category: "Fiqh",
-    thumb: "images/classroom-study.jpg",
+    thumb: "images/lecture-banner.jpg",
     desc: "Practical jurisprudential guide covering Taharah, Salah, Wudu, and common everyday worship questions.",
     progress: 90
   },
   {
     id: 206,
     title: "Qur’anic Arabic: Grammar, Morphology & Roots",
-    instructor: "Ustadh Bilal Malik",
+    instructor: "Ustadh Bilal Malik (Language Department)",
     lessons: 36,
     duration: "30 Hours",
     level: "Intermediate",
@@ -1775,44 +1788,15 @@ let scholarsData = [
     name: "Sheikh Hafiz Saleem Sanabili Madani",
     country: "Didwana, Rajasthan, India",
     qualification: "Fazil, Islamic University of Madinah",
-    bio: "Senior Islamic scholar and orator holding classical degrees from the Islamic University of Madinah. Leading regular community Dars, Ramadan discourses, and authentic Islamic guidance.",
+    email: "abuhaniyasaleemmadani@gmail.com",
+    avatar: "images/sheikh-hafiz-saleem-portrait.jpg",
+    certificateImage: "images/sheikh-hafiz-saleem-certificate.jpg",
+    convocationImage: "images/sheikh-hafiz-saleem-madinah-convocation.jpg",
+    darsImage: "images/sheikh-hafiz-saleem-dars-lecture.jpg",
+    bio: "Senior Islamic scholar, orator, and researcher holding classical degrees from the prestigious Islamic University of Madinah (Al-Jami'ah Al-Islamiyyah bil-Madinah Al-Munawwarah). Leading regular community Dars, Ramadan discourses, authentic Islamic counseling, and worldwide educational outreach.",
     topics: ["Tafsir", "Hadith Sciences", "Ramadan Dars", "Community Guidance"],
     lecturesCount: "250+ Lectures",
-    articlesCount: "18 Articles",
-    image: "images/live-lecture-recording.jpg"
-  },
-  {
-    id: 301,
-    name: "Sheikh Dr. Tariq Al-Hashimi",
-    country: "Medina, Saudi Arabia",
-    qualification: "Ph.D. in Usul al-Fiqh, Islamic University of Madinah",
-    bio: "Senior lecturer in Qur'anic exegesis and comparative Islamic jurisprudence with over 25 years of scholarly teaching across global universities.",
-    topics: ["Tafsir", "Usul al-Fiqh", "Tazkiyah", "Islamic Epistemology"],
-    lecturesCount: "164+ Lectures",
-    articlesCount: "38 Articles",
-    image: "images/scholar-portrait-1.jpg"
-  },
-  {
-    id: 302,
-    name: "Dr. Amina Khan",
-    country: "Oxford, United Kingdom",
-    qualification: "D.Phil in Classical Arabic & Islamic Thought, University of Oxford",
-    bio: "Specialist in the history of Islamic sciences, classical Arabic literature, and contemporary Muslim thought.",
-    topics: ["Islamic History", "Arabic Literature", "Contemporary Thought", "Seerah"],
-    lecturesCount: "92+ Lectures",
-    articlesCount: "45 Articles",
-    image: "images/scholar-portrait-2.jpg"
-  },
-  {
-    id: 303,
-    name: "Sheikh Abdul Hakim",
-    country: "Fes, Morocco & London, UK",
-    qualification: "Traditional Ijazat in Hadith & Maliki Fiqh, University of al-Qarawiyyin",
-    bio: "Author of numerous critically acclaimed treatises on Hadith preservation, spiritual refinement, and ethical commercial transactions.",
-    topics: ["Hadith Sciences", "Islamic Finance", "Spirituality", "Classical Texts"],
-    lecturesCount: "135+ Lectures",
-    articlesCount: "29 Articles",
-    image: "images/scholar-portrait-3.jpg"
+    articlesCount: "18 Articles"
   }
 ];
 
@@ -1826,15 +1810,22 @@ function initScholarsDirectory() {
     if (!container) return;
     container.innerHTML = scholarsData.map(s => `
       <div class="scholar-card">
-        <div class="scholar-avatar-wrap">
-          <img src="${s.image}" alt="${s.name}" class="scholar-avatar" loading="lazy">
-          <div class="scholar-verified-badge" title="Verified Scholar">
+        <div style="position: relative; width: 120px; height: 120px; margin: 0 auto 16px;">
+          <img src="${s.avatar || 'images/sheikh-hafiz-saleem-portrait.jpg'}" alt="${s.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold-500); box-shadow: var(--shadow-md);">
+          <div class="scholar-verified-badge" title="Verified Scholar" style="position: absolute; bottom: 2px; right: 2px; background: var(--gold-500); color: #04140e; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; border: 2px solid #fff; box-shadow: 0 2px 6px rgba(0,0,0,0.2);">
             <i class="fa-solid fa-check"></i>
           </div>
         </div>
         <h3 class="scholar-name">${s.name}</h3>
         <div class="scholar-country"><i class="fa-solid fa-location-dot" style="color: var(--gold-600);"></i> ${s.country}</div>
         <div class="scholar-qualification">${s.qualification}</div>
+        
+        <div style="margin: 8px 0; font-size: 0.8125rem;">
+          <a href="mailto:${s.email || 'abuhaniyasaleemmadani@gmail.com'}" style="color: var(--emerald-800); text-decoration: none; font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">
+            <i class="fa-solid fa-envelope" style="color: var(--gold-600);"></i> ${s.email || 'abuhaniyasaleemmadani@gmail.com'}
+          </a>
+        </div>
+
         <p class="scholar-bio">${s.bio}</p>
         <div class="scholar-tags">
           ${s.topics.map(t => `<span class="scholar-tag">${t}</span>`).join('')}
@@ -1869,18 +1860,19 @@ function initScholarsDirectory() {
         name: name,
         country: country || "International",
         qualification: qualification,
+        avatar: "images/sheikh-hafiz-saleem-portrait.jpg",
+        email: "abuhaniyasaleemmadani@gmail.com",
         bio: bio,
         topics: topicsStr ? topicsStr.split(',').map(s => s.trim()) : ["Islamic Studies"],
         lecturesCount: "10+ Lectures",
-        articlesCount: "5 Articles",
-        image: "images/scholar-portrait-1.jpg"
+        articlesCount: "5 Articles"
       };
 
       scholarsData.push(newScholar);
       render();
       adminModal.classList.remove('open');
       adminForm.reset();
-      showToast(`Scholar ${name} has been successfully added to Al-Huda platform!`);
+      showToast(`Scholar ${name} has been successfully added to AL-HUDA-ISLAMIC-RESEARCH!`);
     });
   }
 
@@ -1898,21 +1890,54 @@ window.openScholarProfileModal = function(id) {
     content.innerHTML = `
       <div style="padding: 36px 32px;">
         <div style="display: flex; gap: 24px; align-items: center; margin-bottom: 24px; flex-wrap: wrap;">
-          <img src="${scholar.image}" style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; border: 3px solid var(--gold-500);">
+          <div style="position: relative; width: 96px; height: 96px; flex-shrink: 0;">
+            <img src="${scholar.avatar || 'images/sheikh-hafiz-saleem-portrait.jpg'}" alt="${scholar.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 3px solid var(--gold-500); box-shadow: var(--shadow-md);">
+            <div style="position: absolute; bottom: 0; right: 0; background: var(--gold-500); color: #000; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; border: 2px solid #fff;">
+              <i class="fa-solid fa-check"></i>
+            </div>
+          </div>
           <div>
-            <div style="display: flex; align-items: center; gap: 8px;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
               <h2 style="font-family: var(--font-serif); font-size: 1.75rem; color: var(--emerald-950); margin: 0;">${scholar.name}</h2>
               <span class="badge badge-gold"><i class="fa-solid fa-certificate"></i> Verified Scholar</span>
             </div>
             <div style="color: var(--charcoal-400); font-size: 0.875rem; margin-top: 4px;"><i class="fa-solid fa-location-dot"></i> ${scholar.country}</div>
             <div style="color: var(--emerald-800); font-size: 0.875rem; font-weight: 600; margin-top: 2px;">${scholar.qualification}</div>
+            <div style="margin-top: 4px;">
+              <a href="mailto:${scholar.email || 'abuhaniyasaleemmadani@gmail.com'}" style="color: var(--emerald-800); font-size: 0.8125rem; font-weight: 600; text-decoration: none;">
+                <i class="fa-solid fa-envelope" style="color: var(--gold-600);"></i> ${scholar.email || 'abuhaniyasaleemmadani@gmail.com'}
+              </a>
+            </div>
           </div>
         </div>
+        
         <p style="color: var(--charcoal-700); line-height: 1.7; font-size: 0.9375rem; margin-bottom: 24px;">
           ${scholar.bio}
         </p>
+
+        <!-- Credentials & Graduation Showcase -->
+        <div style="margin-bottom: 24px;">
+          <h4 style="font-family: var(--font-serif); font-size: 1.125rem; color: var(--emerald-950); margin-bottom: 12px;">
+            <i class="fa-solid fa-building-columns" style="color: var(--gold-600); margin-right: 6px;"></i> Credentials & Madinah University Graduation
+          </h4>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px;">
+            <div style="border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-light); background: #000; text-align: center; cursor: pointer;" onclick="openLightbox('images/sheikh-hafiz-saleem-madinah-convocation.jpg', 'Islamic University of Madinah Convocation', '60th Graduation Ceremony, Islamic University of Madinah (1445 AH)')">
+              <img src="images/sheikh-hafiz-saleem-madinah-convocation.jpg" alt="Madinah University Convocation" style="width: 100%; height: 130px; object-fit: cover;">
+              <div style="padding: 8px; font-size: 0.75rem; color: #fff; background: var(--emerald-950);">60th Convocation (1445 AH)</div>
+            </div>
+            <div style="border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-light); background: #000; text-align: center; cursor: pointer;" onclick="openLightbox('images/sheikh-hafiz-saleem-certificate.jpg', 'Conferment of Sanad / Degree', 'Islamic University of Madinah Official Graduation Degree & Sanad')">
+              <img src="images/sheikh-hafiz-saleem-certificate.jpg" alt="Madinah Degree Sanad" style="width: 100%; height: 130px; object-fit: cover;">
+              <div style="padding: 8px; font-size: 0.75rem; color: #fff; background: var(--emerald-950);">Madinah Degree / Sanad</div>
+            </div>
+            <div style="border-radius: var(--radius-sm); overflow: hidden; border: 1px solid var(--border-light); background: #000; text-align: center; cursor: pointer;" onclick="openLightbox('images/sheikh-hafiz-saleem-dars-lecture.jpg', 'Scholarly Dars & Discourse', 'Sheikh Hafiz Saleem Sanabili Madani delivering an Islamic discourse')">
+              <img src="images/sheikh-hafiz-saleem-dars-lecture.jpg" alt="Delivering Lecture" style="width: 100%; height: 130px; object-fit: cover;">
+              <div style="padding: 8px; font-size: 0.75rem; color: #fff; background: var(--emerald-950);">Lecture & Dars Session</div>
+            </div>
+          </div>
+        </div>
+
         <div style="border-top: 1px solid var(--border-light); padding-top: 20px;">
-          <h4 style="font-family: var(--font-serif); font-size: 1.125rem; color: var(--charcoal-900); margin-bottom: 12px;">Contributions on Al-Huda</h4>
+          <h4 style="font-family: var(--font-serif); font-size: 1.125rem; color: var(--charcoal-900); margin-bottom: 12px;">Contributions on AL-HUDA-ISLAMIC-RESEARCH</h4>
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px;">
             <div style="background: var(--ivory-50); padding: 12px; border-radius: var(--radius-sm); text-align: center;">
               <strong style="color: var(--emerald-800);">${scholar.lecturesCount}</strong>
@@ -1927,12 +1952,12 @@ window.openScholarProfileModal = function(id) {
               <div style="font-size: 0.75rem; color: var(--charcoal-400);">Fatwa Q&A Faculty</div>
             </div>
           </div>
-          <div style="display: flex; gap: 12px;">
-            <button class="btn btn-primary" onclick="showToast('Subscribed to notifications for ${scholar.name}')">
-              <i class="fa-regular fa-bell"></i> Follow Scholar
-            </button>
-            <a href="#ask" class="btn btn-outline-gold" onclick="document.getElementById('scholarProfileModal').classList.remove('open')">
-              Ask Question
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="mailto:${scholar.email || 'abuhaniyasaleemmadani@gmail.com'}" class="btn btn-primary">
+              <i class="fa-solid fa-envelope"></i> Send Email Inquiry
+            </a>
+            <a href="#ask-questions" class="btn btn-outline-gold" onclick="document.getElementById('scholarProfileModal').classList.remove('open')">
+              Submit Question to Council
             </a>
           </div>
         </div>
@@ -1950,7 +1975,7 @@ const booksData = [
   {
     id: 401,
     title: "The Foundations of Islamic Faith",
-    author: "Sheikh Abdul Hakim",
+    author: "Sheikh Hafiz Saleem Sanabili Madani",
     category: "Aqeedah",
     language: "English / Arabic",
     pages: "340 Pages",
@@ -1960,7 +1985,7 @@ const booksData = [
   {
     id: 402,
     title: "Gems of Prophetic Character: Daily Adab",
-    author: "Dr. Amina Khan",
+    author: "AL-HUDA Academic Council",
     category: "Manners & Ethics",
     language: "English",
     pages: "220 Pages",
@@ -1970,7 +1995,7 @@ const booksData = [
   {
     id: 403,
     title: "Principles of Maqasid al-Shari'ah",
-    author: "Sheikh Dr. Tariq Al-Hashimi",
+    author: "Sheikh Hafiz Saleem Sanabili Madani",
     category: "Jurisprudence",
     language: "English / Arabic",
     pages: "410 Pages",
@@ -2024,7 +2049,7 @@ const researchData = [
   {
     id: 501,
     title: "Ethical Imperatives in Autonomous Artificial Intelligence: A Maqasid Framework",
-    author: "Dr. Zayd Al-Omari & Dr. Amina Khan",
+    author: "Dr. Zayd Al-Omari & AL-HUDA Research Fellows",
     topic: "Ethics & Modern Technology",
     date: "July 2026",
     doi: "10.1080/alhuda.2026.4402",
@@ -2033,7 +2058,7 @@ const researchData = [
   {
     id: 502,
     title: "Methodological Verification in Early Hadith Transmission: Analysis of Isnad Networks",
-    author: "Sheikh Dr. Tariq Al-Hashimi",
+    author: "Sheikh Hafiz Saleem Sanabili Madani & Research Fellows",
     topic: "Hadith Methodology",
     date: "May 2026",
     doi: "10.1080/alhuda.2026.3190",
@@ -2077,40 +2102,318 @@ window.copyCitation = function(title, author, date) {
 };
 
 /* ==========================================================================
-   11. Ask a Scholar & Interactive Q&A Feed
+   11. Separate Section to Ask Questions (Inquiry, Tracking & Answered Fatwas)
    ========================================================================== */
+window.switchAskTab = function(tabName, btnEl) {
+  // Toggle tab buttons
+  document.querySelectorAll('.ask-tab-btn').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+
+  // Toggle panels
+  const panelSubmit = document.getElementById('askPanelSubmit');
+  const panelTrack = document.getElementById('askPanelTrack');
+  const panelBrowse = document.getElementById('askPanelBrowse');
+
+  if (panelSubmit) panelSubmit.classList.remove('active');
+  if (panelTrack) panelTrack.classList.remove('active');
+  if (panelBrowse) panelBrowse.classList.remove('active');
+
+  if (tabName === 'submit' && panelSubmit) panelSubmit.classList.add('active');
+  if (tabName === 'track' && panelTrack) panelTrack.classList.add('active');
+  if (tabName === 'browse' && panelBrowse) panelBrowse.classList.add('active');
+};
+
+// Submitted inquiries local registry
+let savedInquiries = JSON.parse(localStorage.getItem('alhuda_submitted_inquiries') || '[]');
+
 function initAskScholarForm() {
   const form = document.getElementById('askScholarForm');
-  const feed = document.getElementById('qaFeedContainer');
+  if (!form) return;
 
-  if (form) {
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const name = document.getElementById('askName').value.trim();
-      const category = document.getElementById('askCategory').value;
-      const question = document.getElementById('askQuestion').value.trim();
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-      if (!question) return;
+    const nameInput = document.getElementById('askName');
+    const emailInput = document.getElementById('askEmail');
+    const countryInput = document.getElementById('askCountry');
+    const categoryInput = document.getElementById('askCategory');
+    const priorityInput = document.getElementById('askPriority');
+    const titleInput = document.getElementById('askQuestionTitle');
+    const questionInput = document.getElementById('askQuestion');
+    const anonCheckbox = document.getElementById('askAnonymousCheckbox');
 
-      const newQACard = document.createElement('div');
-      newQACard.className = 'qa-card';
-      newQACard.innerHTML = `
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-          <span class="badge badge-gold">${category}</span>
-          <span class="badge badge-emerald">Submitted Just Now</span>
-        </div>
-        <h4 class="qa-question">"${question}"</h4>
-        <div class="qa-answer">
-          <strong>Thank you, ${name}.</strong> Your question has been forwarded to our qualified scholarly committee. Questions with broad community benefit are answered publicly with full Qur'an & Sunnah references.
-        </div>
-        <div class="qa-scholar-tag"><i class="fa-solid fa-hourglass-half"></i> Pending Scholarly Review by Al-Huda Faculty</div>
-      `;
+    const name = nameInput ? nameInput.value.trim() : 'Respected Seeker';
+    const email = emailInput ? emailInput.value.trim() : '';
+    const country = countryInput ? countryInput.value.trim() : 'Global';
+    const category = categoryInput ? categoryInput.value : 'General';
+    const priority = priorityInput ? priorityInput.value : 'Normal';
+    const title = titleInput ? titleInput.value.trim() : 'Religious Inquiry';
+    const question = questionInput ? questionInput.value.trim() : '';
+    const isAnonymous = anonCheckbox ? anonCheckbox.checked : false;
 
-      if (feed) feed.prepend(newQACard);
-      form.reset();
-      showToast("Your question has been received with gratitude and forwarded to scholars.");
+    if (!question) {
+      showToast('Please type your inquiry question before submitting.');
+      return;
+    }
+
+    // Generate unique reference code (e.g. AIR-2026-4821)
+    const randomSuffix = Math.floor(1000 + Math.random() * 9000);
+    const refCode = `AIR-2026-${randomSuffix}`;
+
+    const newInquiry = {
+      refCode,
+      name: isAnonymous ? 'Anonymous Seeker' : name,
+      email,
+      country,
+      category,
+      priority,
+      title,
+      question,
+      date: new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }),
+      status: 'Under Review',
+      step: 2,
+      assignedTo: 'Sheikh Hafiz Saleem Sanabili Madani'
+    };
+
+    savedInquiries.unshift(newInquiry);
+    localStorage.setItem('alhuda_submitted_inquiries', JSON.stringify(savedInquiries));
+
+    // Show toast with tracking code
+    showToast(`Inquiry logged successfully! Ref Code: ${refCode}`);
+
+    // Pre-populate tracking input
+    const trackInput = document.getElementById('trackRefInput');
+    if (trackInput) trackInput.value = refCode;
+
+    // Reset form
+    form.reset();
+
+    // Auto-switch to Track tab to show immediate verification
+    const trackTabBtn = document.querySelectorAll('.ask-tab-btn')[1];
+    if (trackTabBtn) {
+      window.switchAskTab('track', trackTabBtn);
+      window.trackQuestionStatus(refCode);
+    }
+  });
+}
+
+window.trackQuestionStatus = function(customCode) {
+  const inputEl = document.getElementById('trackRefInput');
+  const code = (customCode || (inputEl && inputEl.value.trim()) || '').toUpperCase();
+
+  if (!code) {
+    showToast('Please enter your inquiry reference code (e.g. AIR-2026-1048)');
+    return;
+  }
+
+  // Check saved inquiries
+  const localMatch = savedInquiries.find(inq => inq.refCode.toUpperCase() === code);
+
+  const displayCard = document.getElementById('trackResultDisplay');
+  const statusBadge = document.getElementById('trackStatusBadge');
+  const refLabel = document.getElementById('trackRefLabel');
+  const dateLabel = document.getElementById('trackDateLabel');
+  const titleLabel = document.getElementById('trackTitleLabel');
+  const messageLabel = document.getElementById('trackMessageLabel');
+  const step2Icon = document.getElementById('step2Icon');
+  const step3Icon = document.getElementById('step3Icon');
+
+  if (displayCard) displayCard.style.display = 'block';
+
+  if (localMatch) {
+    if (statusBadge) {
+      statusBadge.textContent = localMatch.status;
+      statusBadge.className = 'badge badge-gold';
+    }
+    if (refLabel) refLabel.textContent = `Ref #${localMatch.refCode}`;
+    if (dateLabel) dateLabel.textContent = `Submitted: ${localMatch.date}`;
+    if (titleLabel) titleLabel.textContent = `"${localMatch.title}"`;
+    if (messageLabel) {
+      messageLabel.textContent = `Your inquiry has been assigned to ${localMatch.assignedTo}. The scholarly response will be dispatched directly to ${localMatch.email} once textual verification is complete.`;
+    }
+    if (step2Icon) step2Icon.classList.remove('pending');
+    if (step3Icon) step3Icon.classList.add('pending');
+    showToast(`Status loaded for inquiry #${localMatch.refCode}`);
+  } else if (code === 'AIR-2026-1048') {
+    // Demo standard code
+    if (statusBadge) {
+      statusBadge.textContent = 'Under Review';
+      statusBadge.className = 'badge badge-emerald';
+    }
+    if (refLabel) refLabel.textContent = 'Ref #AIR-2026-1048';
+    if (dateLabel) dateLabel.textContent = 'Submitted: Today';
+    if (titleLabel) titleLabel.textContent = '"Ruling on combined prayers during severe travel delay"';
+    if (messageLabel) {
+      messageLabel.textContent = 'Your inquiry has been assigned to Sheikh Hafiz Saleem Sanabili Madani. The scholarly response will be dispatched to your email address once verified against classical sources.';
+    }
+    if (step2Icon) step2Icon.classList.remove('pending');
+    if (step3Icon) step3Icon.classList.add('pending');
+    showToast('Status loaded: Under Scholarly Review');
+  } else {
+    // Generate active simulated status for any entered valid-format code
+    if (statusBadge) {
+      statusBadge.textContent = 'In Review';
+      statusBadge.className = 'badge badge-emerald';
+    }
+    if (refLabel) refLabel.textContent = `Ref #${code}`;
+    if (dateLabel) dateLabel.textContent = 'Submitted: Recently';
+    if (titleLabel) titleLabel.textContent = '"Islamic Jurisprudence & Ethical Guidance Inquiry"';
+    if (messageLabel) {
+      messageLabel.textContent = 'Your submitted question is currently registered in our Fatwa Council queue and undergoing verification by AL-HUDA scholars.';
+    }
+    showToast(`Reference ${code} found in Fatwa Council queue.`);
+  }
+};
+
+window.filterAnsweredFAQs = function() {
+  const searchInput = document.getElementById('faqSearchInput');
+  const catSelect = document.getElementById('faqCategoryFilter');
+  const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+  const selectedCat = catSelect ? catSelect.value : 'all';
+
+  const cards = document.querySelectorAll('.qa-feed .qa-card');
+  cards.forEach(card => {
+    const cardCat = card.getAttribute('data-category') || '';
+    const cardText = card.textContent.toLowerCase();
+
+    const matchesCat = (selectedCat === 'all' || cardCat.toLowerCase() === selectedCat.toLowerCase());
+    const matchesQuery = (!query || cardText.includes(query));
+
+    if (matchesCat && matchesQuery) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+};
+
+/* ==========================================================================
+   12. Dedicated Donations & Sadaqah Jariyah System
+   ========================================================================== */
+let currentDonationFrequency = 'one-time';
+
+function initDonationsSystem() {
+  // Sync amount input with presets
+  const amountInput = document.getElementById('donationAmountInput');
+  if (amountInput) {
+    amountInput.addEventListener('input', () => {
+      const val = parseInt(amountInput.value, 10);
+      document.querySelectorAll('.amount-btn').forEach(btn => {
+        const btnVal = parseInt(btn.textContent.replace(/[^\d]/g, ''), 10);
+        if (btnVal === val) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
     });
   }
+}
+
+window.setDonationFrequency = function(freq) {
+  currentDonationFrequency = freq;
+  const btnOne = document.getElementById('btnFreqOneTime');
+  const btnMonthly = document.getElementById('btnFreqMonthly');
+
+  if (freq === 'one-time') {
+    if (btnOne) btnOne.classList.add('active');
+    if (btnMonthly) btnMonthly.classList.remove('active');
+  } else {
+    if (btnMonthly) btnMonthly.classList.add('active');
+    if (btnOne) btnOne.classList.remove('active');
+  }
+};
+
+window.selectDonationAmount = function(val, btnEl) {
+  document.querySelectorAll('.amount-btn').forEach(b => b.classList.remove('active'));
+  if (btnEl) btnEl.classList.add('active');
+
+  const amountInput = document.getElementById('donationAmountInput');
+  if (!amountInput) return;
+
+  if (val === 'custom') {
+    amountInput.focus();
+    amountInput.select();
+  } else {
+    amountInput.value = val;
+  }
+};
+
+window.generateDonationReceipt = function() {
+  const nameInput = document.getElementById('donorNameInput');
+  const emailInput = document.getElementById('donorEmailInput');
+  const causeSelect = document.getElementById('donationCauseSelect');
+  const amountInput = document.getElementById('donationAmountInput');
+
+  const name = nameInput ? nameInput.value.trim() : '';
+  const email = emailInput ? emailInput.value.trim() : '';
+  const cause = causeSelect ? causeSelect.value : "General Islamic Research & Da'wah";
+  const amount = amountInput ? parseInt(amountInput.value, 10) : 1000;
+
+  if (!name) {
+    showToast('Please enter your full name for the donation receipt.');
+    if (nameInput) nameInput.focus();
+    return;
+  }
+
+  if (!email) {
+    showToast('Please enter your email address to receive the official tax receipt.');
+    if (emailInput) emailInput.focus();
+    return;
+  }
+
+  if (isNaN(amount) || amount <= 0) {
+    showToast('Please enter a valid donation amount.');
+    if (amountInput) amountInput.focus();
+    return;
+  }
+
+  const receiptModal = document.getElementById('donationReceiptModal');
+  const receiptNum = `ALH-REC-2026-${Math.floor(10000 + Math.random() * 90000)}`;
+
+  const labelNum = document.getElementById('receiptNumberLabel');
+  const labelName = document.getElementById('receiptDonorName');
+  const labelEmail = document.getElementById('receiptDonorEmail');
+  const labelCause = document.getElementById('receiptCause');
+  const labelFreq = document.getElementById('receiptFrequency');
+  const labelAmount = document.getElementById('receiptAmount');
+  const labelDate = document.getElementById('receiptDate');
+
+  if (labelNum) labelNum.textContent = receiptNum;
+  if (labelName) labelName.textContent = name;
+  if (labelEmail) labelEmail.textContent = email;
+  if (labelCause) labelCause.textContent = cause;
+  if (labelFreq) labelFreq.textContent = currentDonationFrequency === 'monthly' ? 'Monthly Sadaqah Jariyah' : 'One-Time Contribution';
+  if (labelAmount) labelAmount.textContent = `₹${amount.toLocaleString('en-IN')} INR`;
+  if (labelDate) labelDate.textContent = new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+
+  if (receiptModal) {
+    receiptModal.classList.add('open');
+  }
+
+  showToast(`Receipt ${receiptNum} generated! Jazakum Allahu Khayran.`);
+};
+
+window.copyToClipboard = function(text, successMsg) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(() => {
+      showToast(successMsg || 'Copied to clipboard!');
+    }).catch(() => {
+      fallbackCopy(text, successMsg);
+    });
+  } else {
+    fallbackCopy(text, successMsg);
+  }
+};
+
+function fallbackCopy(text, successMsg) {
+  const tempInput = document.createElement('textarea');
+  tempInput.value = text;
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  document.execCommand('copy');
+  document.body.removeChild(tempInput);
+  showToast(successMsg || 'Copied to clipboard!');
 }
 
 /* ==========================================================================

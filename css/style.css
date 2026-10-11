@@ -1,7 +1,7 @@
 /* ==========================================================================
-   AL-HUDA — Comprehensive Islamic Knowledge & Media Platform
-   Original Visual Identity & Design System
-   "Guidance for Life. Knowledge for Humanity."
+   AL-HUDA-ISLAMIC-RESEARCH
+   Authentic Islamic Knowledge, Research, Guidance & Media Platform
+   "Authentic Islamic Knowledge, Research, Guidance & Media Platform"
    ========================================================================== */
 
 :root {
@@ -531,29 +531,48 @@ ul, ol {
 
 .logo-name {
   font-family: var(--font-serif);
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   font-weight: 700;
   color: var(--emerald-950);
-  line-height: 1.1;
-  letter-spacing: 0.02em;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
   display: flex;
   align-items: baseline;
   gap: 6px;
+  flex-wrap: wrap;
 }
 
 .logo-name-ar {
   font-family: var(--font-arabic-title);
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   color: var(--gold-600);
   font-weight: 600;
 }
 
 .logo-tagline {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
-  color: var(--charcoal-400);
+  color: var(--charcoal-600);
+  margin-top: 2px;
+}
+
+.nav-donate-btn {
+  background: linear-gradient(135deg, var(--gold-500), var(--gold-600)) !important;
+  color: var(--charcoal-950) !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-sm);
+  padding: 6px 12px !important;
+  box-shadow: 0 2px 8px rgba(217, 119, 6, 0.25);
+  transition: all var(--transition-fast) !important;
+}
+
+.nav-donate-btn:hover {
+  background: linear-gradient(135deg, var(--gold-400), var(--gold-500)) !important;
+  color: var(--charcoal-950) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(217, 119, 6, 0.35);
 }
 
 /* Nav Menu */
@@ -1058,7 +1077,7 @@ ul, ol {
 }
 
 /* ==========================================================================
-   20 Islamic Knowledge Categories Section
+   Islamic Knowledge Categories Section
    ========================================================================== */
 .categories-grid {
   display: grid;
@@ -1800,14 +1819,30 @@ ul, ol {
   border-color: var(--gold-500);
 }
 
-.scholar-avatar-wrap {
+.scholar-avatar-wrap,
+.scholar-emblem-wrap {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   margin-bottom: 20px;
   padding: 4px;
-  background: linear-gradient(135deg, var(--emerald-800), var(--gold-500));
+  background: linear-gradient(135deg, rgba(6, 78, 59, 0.15), rgba(217, 119, 6, 0.25));
+  border: 2px solid var(--gold-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--emerald-900);
+  font-size: 2.2rem;
+  box-shadow: 0 4px 16px rgba(6, 78, 59, 0.12);
+  transition: all var(--transition-normal);
+}
+
+.scholar-card:hover .scholar-emblem-wrap,
+.scholar-card:hover .scholar-avatar-wrap {
+  background: linear-gradient(135deg, var(--emerald-850), var(--emerald-950));
+  color: var(--gold-400);
+  transform: scale(1.05);
 }
 
 .scholar-avatar {
@@ -1818,10 +1853,47 @@ ul, ol {
   background-color: var(--ivory-100);
 }
 
+.scholar-emblem-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.author-avatar-badge {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--emerald-800), var(--emerald-950));
+  color: var(--gold-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.95rem;
+  border: 1.5px solid var(--gold-500);
+  flex-shrink: 0;
+}
+
+.lecture-speaker-crest {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--emerald-800), var(--emerald-950));
+  color: var(--gold-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  border: 2px solid var(--gold-500);
+  flex-shrink: 0;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
 .scholar-verified-badge {
   position: absolute;
-  bottom: 4px;
-  right: 4px;
+  bottom: 2px;
+  right: 2px;
   width: 26px;
   height: 26px;
   border-radius: 50%;
@@ -3698,4 +3770,892 @@ textarea.form-control {
     height: 300px;
   }
 }
+
+/* ==========================================================================
+   Header Social Quick Links
+   ========================================================================== */
+.header-social-quick {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.social-yt-btn:hover {
+  background: #ff0000 !important;
+  color: #fff !important;
+  border-color: #ff0000 !important;
+}
+
+.social-ig-btn:hover {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%) !important;
+  color: #fff !important;
+  border-color: transparent !important;
+}
+
+.social-wa-btn:hover {
+  background: #25d366 !important;
+  color: #fff !important;
+  border-color: #25d366 !important;
+}
+
+.social-fb-btn:hover {
+  background: #1877f2 !important;
+  color: #fff !important;
+  border-color: #1877f2 !important;
+}
+
+/* ==========================================================================
+   Persistent Floating WhatsApp Action Button
+   ========================================================================== */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 84px;
+  right: 24px;
+  width: 58px;
+  height: 58px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #ffffff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.85rem;
+  box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+  z-index: 998;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+}
+
+.floating-whatsapp-btn:hover {
+  transform: translateY(-4px) scale(1.08);
+  box-shadow: 0 12px 30px rgba(37, 211, 102, 0.6);
+  color: #ffffff;
+}
+
+.floating-whatsapp-btn::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 211, 102, 0.6);
+  animation: waPulse 2.2s infinite;
+}
+
+@keyframes waPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  70% { transform: scale(1.25); opacity: 0; }
+  100% { transform: scale(1.25); opacity: 0; }
+}
+
+.floating-whatsapp-tooltip {
+  position: absolute;
+  right: 70px;
+  background: var(--charcoal-900);
+  color: #ffffff;
+  padding: 6px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.78125rem;
+  font-weight: 600;
+  white-space: nowrap;
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(10px);
+  transition: all var(--transition-fast);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.floating-whatsapp-btn:hover .floating-whatsapp-tooltip {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ==========================================================================
+   Media & Social Channels Showcase Section (#media-channels)
+   ========================================================================== */
+.media-channels-section {
+  background: linear-gradient(180deg, var(--emerald-950) 0%, #061c14 100%);
+  color: var(--ivory-100);
+  padding: 85px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.media-channels-section::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: radial-gradient(rgba(217, 119, 6, 0.08) 1px, transparent 0);
+  background-size: 24px 24px;
+  pointer-events: none;
+}
+
+.media-hub-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 32px;
+  margin-top: 36px;
+}
+
+.youtube-main-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  position: relative;
+  backdrop-filter: blur(10px);
+}
+
+.channel-brand-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.channel-info-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.channel-yt-avatar {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #ff0000;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.85rem;
+  box-shadow: 0 4px 16px rgba(255, 0, 0, 0.4);
+}
+
+.channel-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--white);
+  font-weight: 700;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.yt-stat-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: var(--gold-400);
+}
+
+.btn-yt-subscribe {
+  background: #cc0000;
+  color: #fff;
+  font-weight: 700;
+  padding: 10px 22px;
+  border-radius: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(204, 0, 0, 0.35);
+  text-decoration: none;
+}
+
+.btn-yt-subscribe:hover {
+  background: #ff0000;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.5);
+}
+
+.yt-playlists-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.yt-playlist-card {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.yt-playlist-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-500);
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.yt-playlist-thumb {
+  position: relative;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-bottom: 12px;
+  aspect-ratio: 16/9;
+}
+
+.yt-playlist-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.yt-playlist-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.6rem;
+  transition: all var(--transition-fast);
+}
+
+.yt-playlist-card:hover .yt-playlist-overlay {
+  background: rgba(204, 0, 0, 0.6);
+}
+
+.yt-playlist-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--ivory-50);
+  margin-bottom: 6px;
+  line-height: 1.4;
+}
+
+.yt-playlist-count {
+  font-size: 0.75rem;
+  color: var(--gold-400);
+}
+
+/* Secondary Column: WhatsApp & Instagram Cards */
+.media-secondary-col {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.wa-channel-card {
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.12), rgba(18, 140, 126, 0.18));
+  border: 1px solid rgba(37, 211, 102, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+  position: relative;
+}
+
+.wa-badge-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.wa-brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-wa-join {
+  background: #25d366;
+  color: #04140e;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+  text-decoration: none;
+  width: 100%;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.btn-wa-join:hover {
+  background: #20ba59;
+  color: #04140e;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(37, 211, 102, 0.5);
+}
+
+.wa-perks {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.84375rem;
+  color: var(--ivory-200);
+}
+
+.wa-perks li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.wa-perks li i {
+  color: #25d366;
+  font-size: 0.9rem;
+}
+
+.ig-showcase-card {
+  background: linear-gradient(135deg, rgba(220, 39, 67, 0.1), rgba(188, 24, 136, 0.12));
+  border: 1px solid rgba(220, 39, 67, 0.3);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.ig-brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-ig-follow {
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  color: #ffffff;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(220, 39, 67, 0.35);
+  text-decoration: none;
+  width: 100%;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.btn-ig-follow:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(220, 39, 67, 0.5);
+  color: #ffffff;
+}
+
+.ig-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 14px;
+}
+
+.ig-tile {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--ivory-200);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all var(--transition-fast);
+}
+
+.ig-tile:hover {
+  border-color: #e6683c;
+  transform: translateY(-2px);
+}
+
+.ig-tile i {
+  font-size: 1.15rem;
+  margin-bottom: 6px;
+  display: block;
+  color: var(--gold-400);
+}
+
+.fb-showcase-card {
+  background: linear-gradient(135deg, rgba(24, 119, 242, 0.12), rgba(13, 80, 168, 0.18));
+  border: 1px solid rgba(24, 119, 242, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 28px;
+}
+
+.fb-brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: #fff;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn-fb-follow {
+  background: #1877f2;
+  color: #ffffff;
+  font-weight: 700;
+  padding: 10px 24px;
+  border-radius: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9375rem;
+  transition: all var(--transition-fast);
+  box-shadow: 0 4px 14px rgba(24, 119, 242, 0.35);
+  text-decoration: none;
+  width: 100%;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.btn-fb-follow:hover {
+  background: #1464cc;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(24, 119, 242, 0.5);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   Separate Section to Ask Questions (#ask-questions)
+   ========================================================================== */
+.ask-questions-section {
+  padding: 85px 0;
+  background-color: var(--ivory-50);
+  border-top: 1px solid var(--border-light);
+}
+
+.ask-tabs-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.ask-tab-btn {
+  padding: 10px 24px;
+  border-radius: 30px;
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--charcoal-700);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ask-tab-btn.active,
+.ask-tab-btn:hover {
+  background: var(--emerald-900);
+  color: var(--gold-400);
+  border-color: var(--emerald-900);
+  box-shadow: var(--shadow-md);
+}
+
+.ask-tab-btn.active i {
+  color: var(--gold-400);
+}
+
+.ask-content-panel {
+  display: none;
+}
+
+.ask-content-panel.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.ask-grid-layout {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 36px;
+}
+
+.ask-form-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+}
+
+.ask-tracker-box {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 36px;
+  box-shadow: var(--shadow-sm);
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.tracker-search-row {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.tracker-result-card {
+  margin-top: 24px;
+  padding: 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--emerald-100);
+  background: var(--emerald-50);
+  display: none;
+}
+
+.tracker-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.timeline-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  background: var(--emerald-800);
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.timeline-icon.pending {
+  background: var(--ivory-200);
+  color: var(--charcoal-600);
+  border: 1px dashed var(--charcoal-400);
+}
+
+/* ==========================================================================
+   Donations & Sadaqah Section (#donations)
+   ========================================================================== */
+.donations-section {
+  padding: 85px 0;
+  background: #ffffff;
+  position: relative;
+}
+
+.donation-verse-banner {
+  background: linear-gradient(135deg, var(--emerald-950) 0%, var(--emerald-900) 100%);
+  color: var(--ivory-100);
+  border-radius: var(--radius-lg);
+  padding: 36px 40px;
+  margin-bottom: 48px;
+  border: 2px solid var(--gold-500);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.donation-verse-ar {
+  font-family: var(--font-arabic-title);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  line-height: 1.8;
+  color: var(--gold-400);
+  margin-bottom: 14px;
+  direction: rtl;
+}
+
+.donation-verse-en {
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--ivory-200);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.donation-causes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 24px;
+  margin-bottom: 48px;
+}
+
+.cause-card {
+  background: var(--ivory-50);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  transition: all var(--transition-normal);
+  display: flex;
+  flex-direction: column;
+}
+
+.cause-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--gold-500);
+  box-shadow: var(--shadow-md);
+}
+
+.cause-icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--emerald-800), var(--emerald-900));
+  color: var(--gold-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  margin-bottom: 16px;
+}
+
+.cause-title {
+  font-family: var(--font-serif);
+  font-size: 1.1875rem;
+  color: var(--emerald-950);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.cause-desc {
+  font-size: 0.84375rem;
+  color: var(--charcoal-700);
+  line-height: 1.6;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+.donation-box-wrapper {
+  background: var(--ivory-50);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: 40px;
+  box-shadow: var(--shadow-md);
+}
+
+.donation-columns {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 40px;
+}
+
+.donation-frequency-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.frequency-btn {
+  flex: 1;
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  border: 2px solid var(--border-light);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--charcoal-800);
+  text-align: center;
+}
+
+.frequency-btn.active {
+  background: var(--emerald-900);
+  border-color: var(--emerald-900);
+  color: var(--gold-400);
+}
+
+.amount-presets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.amount-btn {
+  padding: 12px;
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  border: 1.5px solid var(--border-light);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  color: var(--charcoal-900);
+  text-align: center;
+}
+
+.amount-btn.active,
+.amount-btn:hover {
+  background: var(--gold-500);
+  color: var(--charcoal-950);
+  border-color: var(--gold-600);
+}
+
+.custom-amount-wrap {
+  position: relative;
+  margin-bottom: 24px;
+}
+
+.custom-amount-wrap span {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--charcoal-600);
+}
+
+.custom-amount-input {
+  padding-left: 36px !important;
+  font-size: 1.1rem !important;
+  font-weight: 700;
+}
+
+.payment-details-card {
+  background: var(--white);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  box-shadow: var(--shadow-xs);
+}
+
+.upi-qr-display {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--emerald-50);
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 20px;
+  border: 1px dashed var(--emerald-300);
+}
+
+.upi-qr-badge {
+  width: 90px;
+  height: 90px;
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border-light);
+  font-size: 3rem;
+  color: var(--emerald-900);
+}
+
+.copy-pill-btn {
+  background: var(--gold-500);
+  color: var(--charcoal-950);
+  border: none;
+  border-radius: 20px;
+  padding: 4px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-pill-btn:hover {
+  background: var(--gold-400);
+}
+
+.bank-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.84375rem;
+  margin-bottom: 20px;
+}
+
+.bank-table td {
+  padding: 8px 6px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.bank-table td:first-child {
+  color: var(--charcoal-600);
+  font-weight: 500;
+  width: 38%;
+}
+
+.bank-table td:last-child {
+  font-weight: 600;
+  color: var(--charcoal-900);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .media-hub-grid {
+    grid-template-columns: 1fr;
+  }
+  .ask-grid-layout {
+    grid-template-columns: 1fr;
+  }
+  .donation-columns {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .amount-presets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .channel-brand-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .btn-yt-subscribe {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 
