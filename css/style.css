@@ -4658,4 +4658,133 @@ textarea.form-control {
   }
 }
 
+/* ==========================================================================
+   Admin Security & Role-Based UI Display Controls
+   ========================================================================== */
+
+/* Hidden by default for regular public visitors */
+#headerAdminArticlesBtn,
+#headerAdminLogoutBtn,
+#mobileAdminArticlesBtn,
+#mobileAdminLogoutBtn,
+#adminAddScholarBtn,
+.articles-admin-action-bar {
+  display: none !important;
+}
+
+/* Visible when administrator is authenticated */
+body.admin-authenticated #headerAdminArticlesBtn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, rgba(197, 160, 89, 0.18), rgba(197, 160, 89, 0.06));
+  border: 1.5px solid var(--gold-500);
+  color: var(--emerald-950);
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(197, 160, 89, 0.3);
+  animation: adminPulse 3s infinite;
+}
+
+body.admin-authenticated #headerAdminLogoutBtn {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 5px;
+  color: #b91c1c;
+  border-color: #fca5a5;
+  background: #fff;
+  transition: all var(--transition-fast);
+}
+
+body.admin-authenticated #headerAdminLogoutBtn:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #991b1b;
+}
+
+body.admin-authenticated #mobileAdminArticlesBtn,
+body.admin-authenticated #mobileAdminLogoutBtn {
+  display: flex !important;
+}
+
+body.admin-authenticated #adminAddScholarBtn {
+  display: inline-flex !important;
+}
+
+body.admin-authenticated .articles-admin-action-bar {
+  display: flex !important;
+}
+
+@keyframes adminPulse {
+  0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.45); }
+  70% { box-shadow: 0 0 0 8px rgba(197, 160, 89, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+}
+
+/* Admin Auth Gateway Modal */
+.admin-auth-card {
+  max-width: 440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.admin-auth-lock-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--emerald-900), var(--emerald-950));
+  border: 2px solid var(--gold-500);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  color: var(--gold-400);
+  font-size: 1.6rem;
+  box-shadow: 0 6px 20px rgba(10, 46, 36, 0.25);
+}
+
+.admin-auth-alert {
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.84375rem;
+  margin-bottom: 18px;
+  display: none;
+  text-align: left;
+  line-height: 1.5;
+}
+
+.admin-auth-alert.error {
+  background: #fdf2f2;
+  border: 1px solid #f8b4b4;
+  color: #9b1c1c;
+  display: block;
+}
+
+.admin-auth-alert.success {
+  background: #f3faf7;
+  border: 1px solid #84e1bc;
+  color: #0e9f6e;
+  display: block;
+}
+
+.admin-auth-alert.lockout {
+  background: #fff8f1;
+  border: 1px solid #fed7aa;
+  color: #c2410c;
+  display: block;
+}
+
+.admin-security-badge-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  background: rgba(14, 159, 110, 0.12);
+  color: #0e9f6e;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+
 

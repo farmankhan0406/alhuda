@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function initApp() {
   initLanguage();
   initNavigation();
+  initAdminSecuritySystem();
   initQuranExperience();
   initHadithExplorer();
   initArticlesPlatform();
@@ -928,10 +929,12 @@ function initArticleAdminPortal() {
   const uploadForm = document.getElementById('adminArticleUploadForm');
   const tabUploadBtn = document.getElementById('adminTabUploadBtn');
   const tabManageBtn = document.getElementById('adminTabManageBtn');
+  const tabSecurityBtn = document.getElementById('adminTabSecurityBtn');
   const paneUpload = document.getElementById('adminPaneUpload');
   const paneManage = document.getElementById('adminPaneManage');
+  const paneSecurity = document.getElementById('adminPaneSecurity');
 
-  // Triggers to open Admin Modal
+  // Triggers to open Admin Modal (Protected)
   const openButtons = [
     document.getElementById('headerAdminArticlesBtn'),
     document.getElementById('mobileAdminArticlesBtn'),
@@ -942,6 +945,10 @@ function initArticleAdminPortal() {
   openButtons.forEach(btn => {
     if (btn) {
       btn.addEventListener('click', () => {
+        if (!isAdminLoggedIn()) {
+          openAdminAuthModal("Restricted Editorial Access: Please enter your administrator passcode.");
+          return;
+        }
         if (adminModal) adminModal.classList.add('open');
         renderAdminArticlesTable();
         updateArticleAdminCounters();
@@ -954,24 +961,27 @@ function initArticleAdminPortal() {
     }
   });
 
-  // Tab switching
+  // Tab switching (Upload, Manage, Security)
   function switchAdminTab(target) {
+    [tabUploadBtn, tabManageBtn, tabSecurityBtn].forEach(b => b && b.classList.remove('active'));
+    [paneUpload, paneManage, paneSecurity].forEach(p => p && p.classList.remove('active'));
+
     if (target === 'upload') {
-      tabUploadBtn.classList.add('active');
-      tabManageBtn.classList.remove('active');
-      paneUpload.classList.add('active');
-      paneManage.classList.remove('active');
-    } else {
-      tabManageBtn.classList.add('active');
-      tabUploadBtn.classList.remove('active');
-      paneManage.classList.add('active');
-      paneUpload.classList.remove('active');
+      if (tabUploadBtn) tabUploadBtn.classList.add('active');
+      if (paneUpload) paneUpload.classList.add('active');
+    } else if (target === 'manage') {
+      if (tabManageBtn) tabManageBtn.classList.add('active');
+      if (paneManage) paneManage.classList.add('active');
       renderAdminArticlesTable();
+    } else if (target === 'security') {
+      if (tabSecurityBtn) tabSecurityBtn.classList.add('active');
+      if (paneSecurity) paneSecurity.classList.add('active');
     }
   }
 
   if (tabUploadBtn) tabUploadBtn.addEventListener('click', () => switchAdminTab('upload'));
   if (tabManageBtn) tabManageBtn.addEventListener('click', () => switchAdminTab('manage'));
+  if (tabSecurityBtn) tabSecurityBtn.addEventListener('click', () => switchAdminTab('security'));
 
   // Author Selection handler (custom author option)
   const authorSelect = document.getElementById('articleAuthorSelect');
@@ -1344,6 +1354,10 @@ window.insertArticleSnippet = function(type) {
 };
 
 window.editArticleFromAdmin = function(id) {
+  if (!isAdminLoggedIn()) {
+    openAdminAuthModal("Authentication required to modify published articles.");
+    return;
+  }
   const article = articlesData.find(a => a.id == id);
   if (!article) return;
 
@@ -1412,6 +1426,10 @@ window.editArticleFromAdmin = function(id) {
 };
 
 window.deleteArticleFromAdmin = function(id) {
+  if (!isAdminLoggedIn()) {
+    openAdminAuthModal("Authentication required to delete published articles.");
+    return;
+  }
   const article = articlesData.find(a => a.id == id);
   if (!article) return;
 
@@ -1842,6 +1860,10 @@ function initScholarsDirectory() {
 
   if (addScholarBtn) {
     addScholarBtn.addEventListener('click', () => {
+      if (!isAdminLoggedIn()) {
+        openAdminAuthModal("Restricted Faculty Access: Please authenticate with administrator credentials.");
+        return;
+      }
       if (adminModal) adminModal.classList.add('open');
     });
   }
@@ -2745,6 +2767,13 @@ function initAuthModals() {
 
   if (tabLogin) tabLogin.addEventListener('click', () => openAuth('login'));
   if (tabRegister) tabRegister.addEventListener('click', () => openAuth('register'));
+  const tabStaffGate = document.getElementById('authTabStaffGate');
+  if (tabStaffGate) {
+    tabStaffGate.addEventListener('click', () => {
+      if (authModal) authModal.classList.remove('open');
+      openAdminAuthModal();
+    });
+  }
 
   if (authForm) {
     authForm.addEventListener('submit', (e) => {
@@ -2853,5 +2882,298 @@ window.openLightbox = function(src, title, subtitle) {
   if (titleEl) titleEl.textContent = title || '';
   if (subEl) subEl.textContent = subtitle || '';
   modal.classList.add('open');
+};
+
+/* ==========================================================================
+   Admin Security, Cryptographic Authentication & RBAC Engine
+   ========================================================================== */
+function initAdminSecuritySystem() {
+  const adminAuthModal = document.getElementById('adminAuthModal');
+  const adminAuthCloseBtn = document.getElementById('adminAuthModalClose');
+  const adminAuthForm = document.getElementById('adminAuthLoginForm');
+  const pwdInput = document.getElementById('adminAuthPasswordInput');
+  const togglePwdBtn = document.getElementById('toggleAdminPasswordBtn');
+  const togglePwdIcon = document.getElementById('toggleAdminPasswordIcon');
+  const footerStaffLink = document.getElementById('footerAdminLoginLink');
+
+  // Check and apply stored session on page load
+  applyAdminAuthState(isAdminLoggedIn());
+
+  // Close button
+  if (adminAuthCloseBtn) {
+    adminAuthCloseBtn.addEventListener('click', closeAdminAuthModal);
+  }
+
+  // Footer staff link trigger
+  if (footerStaffLink) {
+    footerStaffLink.addEventListener('click', () => {
+      if (isAdminLoggedIn()) {
+        const suiteModal = document.getElementById('adminArticleSuiteModal');
+        if (suiteModal) suiteModal.classList.add('open');
+        showToast("Admin session active. Welcome to Studio.");
+      } else {
+        openAdminAuthModal();
+      }
+    });
+  }
+
+  // Toggle password visibility
+  if (togglePwdBtn && pwdInput) {
+    togglePwdBtn.addEventListener('click', () => {
+      if (pwdInput.type === 'password') {
+        pwdInput.type = 'text';
+        if (togglePwdIcon) togglePwdIcon.className = 'fa-regular fa-eye-slash';
+        togglePwdBtn.innerHTML = '<i class="fa-regular fa-eye-slash"></i> Hide';
+      } else {
+        pwdInput.type = 'password';
+        if (togglePwdIcon) togglePwdIcon.className = 'fa-regular fa-eye';
+        togglePwdBtn.innerHTML = '<i class="fa-regular fa-eye"></i> Show';
+      }
+    });
+  }
+
+  // Global Keyboard shortcut: Ctrl + Alt + A to toggle Admin Studio / Login
+  window.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.altKey && (e.key === 'a' || e.key === 'A')) {
+      e.preventDefault();
+      if (isAdminLoggedIn()) {
+        const suiteModal = document.getElementById('adminArticleSuiteModal');
+        if (suiteModal) {
+          suiteModal.classList.toggle('open');
+          showToast(suiteModal.classList.contains('open') ? "Admin Studio opened (Shortcut)" : "Admin Studio closed");
+        }
+      } else {
+        openAdminAuthModal();
+      }
+    }
+  });
+
+  // Admin Login Form Submit
+  if (adminAuthForm) {
+    adminAuthForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('adminAuthEmailInput').value.trim();
+      const password = pwdInput ? pwdInput.value : '';
+      await handleAdminLoginSubmission(email, password);
+    });
+  }
+}
+
+// Session Validator
+window.isAdminLoggedIn = function() {
+  try {
+    const raw = sessionStorage.getItem('alhuda_admin_session');
+    if (!raw) return false;
+    const session = JSON.parse(raw);
+    // Session valid for 4 hours
+    const MAX_AGE = 4 * 60 * 60 * 1000;
+    if (session.authenticated && (Date.now() - session.timestamp < MAX_AGE)) {
+      return true;
+    }
+    sessionStorage.removeItem('alhuda_admin_session');
+    return false;
+  } catch (err) {
+    return false;
+  }
+};
+
+// UI State Applier
+function applyAdminAuthState(isLoggedIn) {
+  if (isLoggedIn) {
+    document.body.classList.add('admin-authenticated');
+  } else {
+    document.body.classList.remove('admin-authenticated');
+  }
+}
+
+// Helper: SHA-256 Hash using Web Crypto API
+async function hashAdminPassword(plainText) {
+  const enc = new TextEncoder().encode(plainText);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', enc);
+  return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Open Admin Auth Modal
+window.openAdminAuthModal = function(noticeMsg = '') {
+  const modal = document.getElementById('adminAuthModal');
+  const alertBox = document.getElementById('adminAuthAlertBox');
+  if (!modal) return;
+  modal.classList.add('open');
+
+  if (alertBox) {
+    if (noticeMsg) {
+      alertBox.className = 'admin-auth-alert lockout';
+      alertBox.innerHTML = `<i class="fa-solid fa-shield-halved" style="margin-right: 6px;"></i> ${noticeMsg}`;
+      alertBox.style.display = 'block';
+    } else {
+      alertBox.style.display = 'none';
+      alertBox.textContent = '';
+    }
+  }
+
+  const pwdInput = document.getElementById('adminAuthPasswordInput');
+  if (pwdInput) {
+    pwdInput.value = '';
+    setTimeout(() => pwdInput.focus(), 200);
+  }
+};
+
+window.closeAdminAuthModal = function() {
+  const modal = document.getElementById('adminAuthModal');
+  if (modal) modal.classList.remove('open');
+};
+
+// Handle Login Submission
+async function handleAdminLoginSubmission(email, password) {
+  const alertBox = document.getElementById('adminAuthAlertBox');
+
+  // Check brute force lockout
+  const lockoutUntil = parseInt(sessionStorage.getItem('alhuda_admin_lockout') || '0', 10);
+  if (Date.now() < lockoutUntil) {
+    const remainingSec = Math.ceil((lockoutUntil - Date.now()) / 1000);
+    if (alertBox) {
+      alertBox.className = 'admin-auth-alert lockout';
+      alertBox.innerHTML = `<i class="fa-solid fa-triangle-exclamation"></i> Security Lockout Active: Too many failed attempts. Try again in <strong>${remainingSec}s</strong>.`;
+      alertBox.style.display = 'block';
+    }
+    return;
+  }
+
+  // Stored password hash or fallback to default
+  const storedHash = localStorage.getItem('alhuda_admin_password_hash');
+  const enteredHash = await hashAdminPassword(password);
+
+  let isPasswordValid = false;
+  if (storedHash) {
+    isPasswordValid = (enteredHash === storedHash);
+  } else {
+    isPasswordValid = (
+      enteredHash === '5b7c0844a60070d7236029e662ed9d5c636fd4358bc844ed4bfcb8d283b2ea7a' || 
+      enteredHash === '0651d0554d83599c19700f971086c648ff979bcd2c1c6ef931b93f0db2afcd26' ||
+      password === 'Madani@786' ||
+      password === 'Madani@1445'
+    );
+  }
+
+  const validEmails = ['abuhaniyasaleemmadani@gmail.com', 'admin', 'sheikhsaleem'];
+  const isEmailValid = validEmails.includes(email.toLowerCase()) || email.includes('@');
+
+  if (isPasswordValid && isEmailValid) {
+    // Clear failed attempts & lockout
+    sessionStorage.removeItem('alhuda_admin_failed_attempts');
+    sessionStorage.removeItem('alhuda_admin_lockout');
+
+    // Store active session
+    sessionStorage.setItem('alhuda_admin_session', JSON.stringify({
+      email: email,
+      authenticated: true,
+      timestamp: Date.now(),
+      role: 'Head Scholar & Administrator'
+    }));
+
+    applyAdminAuthState(true);
+    closeAdminAuthModal();
+
+    showToast("Authentication successful! Welcome, Sheikh Hafiz Saleem.");
+
+    // Open Admin Suite
+    const adminSuiteModal = document.getElementById('adminArticleSuiteModal');
+    if (adminSuiteModal) {
+      adminSuiteModal.classList.add('open');
+      renderAdminArticlesTable();
+      updateArticleAdminCounters();
+    }
+  } else {
+    // Handle failed attempt & rate-limiting
+    let attempts = parseInt(sessionStorage.getItem('alhuda_admin_failed_attempts') || '0', 10) + 1;
+    sessionStorage.setItem('alhuda_admin_failed_attempts', attempts.toString());
+
+    if (attempts >= 5) {
+      const lockDuration = 60 * 1000; // 60 seconds
+      sessionStorage.setItem('alhuda_admin_lockout', (Date.now() + lockDuration).toString());
+      if (alertBox) {
+        alertBox.className = 'admin-auth-alert lockout';
+        alertBox.innerHTML = `<i class="fa-solid fa-shield-halved"></i> Access locked for 60 seconds due to 5 consecutive failed attempts.`;
+        alertBox.style.display = 'block';
+      }
+    } else {
+      if (alertBox) {
+        alertBox.className = 'admin-auth-alert error';
+        alertBox.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Invalid administrative credentials. (${5 - attempts} attempts remaining before temporary lockout)`;
+        alertBox.style.display = 'block';
+      }
+    }
+  }
+}
+
+// Logout session
+window.logoutAdminSession = function() {
+  sessionStorage.removeItem('alhuda_admin_session');
+  applyAdminAuthState(false);
+
+  // Close any open admin modals
+  const suiteModal = document.getElementById('adminArticleSuiteModal');
+  if (suiteModal) suiteModal.classList.remove('open');
+  const scholarModal = document.getElementById('adminScholarModal');
+  if (scholarModal) scholarModal.classList.remove('open');
+
+  showToast("Admin session terminated. Editorial controls are securely locked.");
+};
+
+// Handle Password Change inside Admin Suite
+window.handleAdminChangePassword = async function() {
+  const currentPwd = document.getElementById('currentAdminPwdInput').value;
+  const newPwd = document.getElementById('newAdminPwdInput').value;
+  const confirmPwd = document.getElementById('confirmNewAdminPwdInput').value;
+  const alertBox = document.getElementById('changePasswordAlertBox');
+
+  if (!alertBox) return;
+
+  if (newPwd.length < 6) {
+    alertBox.className = 'admin-auth-alert error';
+    alertBox.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> New passcode must be at least 6 characters long.`;
+    alertBox.style.display = 'block';
+    return;
+  }
+
+  if (newPwd !== confirmPwd) {
+    alertBox.className = 'admin-auth-alert error';
+    alertBox.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> New passcodes do not match. Please re-enter.`;
+    alertBox.style.display = 'block';
+    return;
+  }
+
+  // Verify current password
+  const storedHash = localStorage.getItem('alhuda_admin_password_hash');
+  const currentHash = await hashAdminPassword(currentPwd);
+  let isCurrentValid = false;
+
+  if (storedHash) {
+    isCurrentValid = (currentHash === storedHash);
+  } else {
+    isCurrentValid = (
+      currentHash === '5b7c0844a60070d7236029e662ed9d5c636fd4358bc844ed4bfcb8d283b2ea7a' ||
+      currentPwd === 'Madani@786' ||
+      currentPwd === 'Madani@1445'
+    );
+  }
+
+  if (!isCurrentValid) {
+    alertBox.className = 'admin-auth-alert error';
+    alertBox.innerHTML = `<i class="fa-solid fa-circle-exclamation"></i> Incorrect current passcode.`;
+    alertBox.style.display = 'block';
+    return;
+  }
+
+  // Save new hash
+  const newHash = await hashAdminPassword(newPwd);
+  localStorage.setItem('alhuda_admin_password_hash', newHash);
+
+  alertBox.className = 'admin-auth-alert success';
+  alertBox.innerHTML = `<i class="fa-solid fa-circle-check"></i> Admin passcode successfully updated and encrypted! Remember to use this new passcode for future logins.`;
+  alertBox.style.display = 'block';
+
+  document.getElementById('adminChangePasswordForm').reset();
+  showToast("Admin passcode successfully updated!");
 };
 

@@ -155,9 +155,12 @@
           </div>
         </div>
 
-        <!-- Admin Portal Trigger Button -->
-        <button class="btn btn-sm btn-outline-gold" id="headerAdminArticlesBtn" title="Admin Article Publishing Portal">
-          <i class="fa-solid fa-pen-fancy"></i> Admin Portal
+        <!-- Admin Portal & Logout Buttons (Protected: Appears only when Admin is authenticated) -->
+        <button class="btn btn-sm btn-outline-gold" id="headerAdminArticlesBtn" title="Admin Article Publishing Studio">
+          <i class="fa-solid fa-shield-halved"></i> Admin Studio
+        </button>
+        <button class="btn btn-sm btn-outline" id="headerAdminLogoutBtn" title="Logout Admin Session" onclick="logoutAdminSession()">
+          <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
         </button>
 
         <!-- Login / Join Buttons -->
@@ -199,7 +202,8 @@
       <a href="https://www.facebook.com/share/17veHeyPAs/" target="_blank" class="nav-link" style="color: #1877f2; font-weight: 700;"><i class="fa-brands fa-facebook"></i> Facebook Page</a>
       <a href="https://whatsapp.com/channel/0029VaE8WV9B4hdMJMMPTX3y" target="_blank" class="nav-link" style="color: #25d366; font-weight: 700;"><i class="fa-brands fa-whatsapp"></i> WhatsApp Channel</a>
       <a href="#live" class="nav-link" data-i18n="navLive">Live Stream</a>
-      <a href="javascript:void(0)" class="nav-link" id="mobileAdminArticlesBtn" style="color: var(--gold-600);"><i class="fa-solid fa-pen-nib"></i> Admin: Upload Articles</a>
+      <a href="javascript:void(0)" class="nav-link" id="mobileAdminArticlesBtn" style="color: var(--gold-600);"><i class="fa-solid fa-shield-halved"></i> Admin Studio</a>
+      <a href="javascript:void(0)" class="nav-link" id="mobileAdminLogoutBtn" style="color: #b91c1c;" onclick="logoutAdminSession()"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout Admin</a>
     </div>
     <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px;">
       <button class="btn btn-gold" onclick="document.getElementById('headerJoinBtn').click()">Join Portal</button>
@@ -1975,10 +1979,13 @@
       <div class="footer-bottom">
         <div class="container" style="padding: 0;">
           <div>© 2026 AL-HUDA-ISLAMIC-RESEARCH — Authentic Islamic Knowledge, Research, Guidance & Media Platform. All rights reserved.</div>
-          <div style="display: flex; gap: 20px;">
+          <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
             <a href="#" style="color: var(--charcoal-400);">Privacy Policy</a>
             <a href="#" style="color: var(--charcoal-400);">Terms of Service</a>
             <a href="#" style="color: var(--charcoal-400);">Citation Guide</a>
+            <a href="javascript:void(0)" id="footerAdminLoginLink" style="color: var(--gold-600); font-weight: 600; display: inline-flex; align-items: center; gap: 5px;" title="Authorized Scholars & Editorial Staff Access">
+              <i class="fa-solid fa-lock" style="font-size: 0.75rem;"></i> Staff Portal
+            </a>
           </div>
         </div>
       </div>
@@ -2219,6 +2226,9 @@
           <button class="admin-tab-btn" id="adminTabManageBtn">
             <i class="fa-solid fa-table-list"></i> Manage Published Articles (<span id="adminTabManageBadge">3</span>)
           </button>
+          <button class="admin-tab-btn" id="adminTabSecurityBtn">
+            <i class="fa-solid fa-shield-halved"></i> Security & Passcode
+          </button>
         </div>
       </div>
 
@@ -2434,8 +2444,47 @@
           </div>
         </div>
 
-      </div>
+        <!-- PANE 3: Security & Passcode Management -->
+        <div class="admin-tab-pane" id="adminPaneSecurity">
+          <div style="max-width: 580px; margin: 0 auto; background: var(--ivory-50); border: 1px solid var(--border-light); border-radius: var(--radius-md); padding: 28px;">
+            <div style="display: flex; align-items: center; gap: 14px; margin-bottom: 20px; border-bottom: 1px solid var(--border-light); padding-bottom: 16px;">
+              <div style="width: 46px; height: 46px; border-radius: 50%; background: var(--emerald-50); color: var(--emerald-900); display: flex; align-items: center; justify-content: center; font-size: 1.3rem; border: 1.5px solid var(--gold-500); flex-shrink: 0;">
+                <i class="fa-solid fa-user-shield"></i>
+              </div>
+              <div>
+                <h3 style="font-family: var(--font-serif); font-size: 1.3rem; color: var(--emerald-950); margin: 0 0 2px;">Admin Credentials & Security</h3>
+                <span style="font-size: 0.8125rem; color: var(--charcoal-500);">Authorized Scholar: Sheikh Hafiz Saleem Sanabili Madani</span>
+              </div>
+            </div>
 
+            <div id="changePasswordAlertBox" class="admin-auth-alert"></div>
+
+            <form id="adminChangePasswordForm" onsubmit="event.preventDefault(); handleAdminChangePassword();">
+              <div class="form-group">
+                <label class="form-label" for="currentAdminPwdInput">Current Passcode *</label>
+                <input type="password" id="currentAdminPwdInput" class="form-control" placeholder="Enter current passcode" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="newAdminPwdInput">New Passcode (Min. 6 characters) *</label>
+                <input type="password" id="newAdminPwdInput" class="form-control" placeholder="Create strong new passcode" required minlength="6">
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="confirmNewAdminPwdInput">Confirm New Passcode *</label>
+                <input type="password" id="confirmNewAdminPwdInput" class="form-control" placeholder="Re-type new passcode" required minlength="6">
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 24px; gap: 12px; flex-wrap: wrap;">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa-solid fa-key"></i> Update Passcode
+                </button>
+                <button type="button" class="btn btn-outline" style="color: #b91c1c; border-color: #fca5a5;" onclick="logoutAdminSession()">
+                  <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout Session
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
     </div>
   </div>
 
@@ -2513,9 +2562,12 @@
     <div class="modal-box">
       <button class="modal-close-btn" aria-label="Close Login Modal"><i class="fa-solid fa-xmark"></i></button>
       <div style="padding: 36px 32px;">
-        <div style="display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid var(--border-light);">
-          <button id="authTabLogin" class="btn btn-text active" style="padding-bottom: 10px; font-size: 1.1rem;">Login</button>
-          <button id="authTabRegister" class="btn btn-text" style="padding-bottom: 10px; font-size: 1.1rem;">Join Al-Huda</button>
+        <div style="display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid var(--border-light); flex-wrap: wrap; align-items: center;">
+          <button id="authTabLogin" class="btn btn-text active" style="padding-bottom: 10px; font-size: 1.05rem;">Login</button>
+          <button id="authTabRegister" class="btn btn-text" style="padding-bottom: 10px; font-size: 1.05rem;">Join Al-Huda</button>
+          <button id="authTabStaffGate" class="btn btn-text" style="padding-bottom: 10px; font-size: 1.05rem; color: var(--gold-600); margin-left: auto;" title="Scholarly & Administrative Gateway">
+            <i class="fa-solid fa-shield-halved"></i> Staff Gate
+          </button>
         </div>
         <form id="authForm">
           <div class="form-group">
@@ -2571,6 +2623,70 @@
         <button class="btn btn-sm btn-gold" id="lightboxDownloadBtn" onclick="window.open(document.getElementById('lightboxImg').src, '_blank')">
           <i class="fa-solid fa-arrow-up-right-from-square"></i> Open Full View
         </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       Admin: Dedicated Security & Authentication Gateway Modal
+       ========================================================================== -->
+  <div class="modal-backdrop" id="adminAuthModal">
+    <div class="modal-box" style="max-width: 480px;">
+      <button class="modal-close-btn" id="adminAuthModalClose" aria-label="Close Admin Login"><i class="fa-solid fa-xmark"></i></button>
+      <div style="padding: 36px 32px 30px;">
+        <div class="admin-auth-card">
+          <div class="admin-auth-lock-icon">
+            <i class="fa-solid fa-shield-halved"></i>
+          </div>
+          <span class="badge badge-gold" style="margin-bottom: 8px;">Restricted Editorial Gateway</span>
+          <h2 style="font-family: var(--font-serif); font-size: 1.65rem; color: var(--emerald-950); margin: 0 0 6px;">
+            Al-Huda Staff Portal
+          </h2>
+          <p style="font-size: 0.84375rem; color: var(--charcoal-600); margin-bottom: 20px;">
+            Authorized Scholars & Editorial Staff Only. Please authenticate with your administrative credentials.
+          </p>
+
+          <!-- Alert feedback box -->
+          <div id="adminAuthAlertBox" class="admin-auth-alert"></div>
+
+          <form id="adminAuthLoginForm">
+            <div class="form-group" style="text-align: left;">
+              <label class="form-label" for="adminAuthEmailInput">
+                <i class="fa-solid fa-user-shield" style="color: var(--gold-600); margin-right: 4px;"></i> Admin ID / Email
+              </label>
+              <input type="text" id="adminAuthEmailInput" class="form-control" value="abuhaniyasaleemmadani@gmail.com" placeholder="abuhaniyasaleemmadani@gmail.com" required autocomplete="username">
+            </div>
+
+            <div class="form-group" style="text-align: left;">
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                <label class="form-label" for="adminAuthPasswordInput" style="margin-bottom: 0;">
+                  <i class="fa-solid fa-key" style="color: var(--gold-600); margin-right: 4px;"></i> Passcode / Password
+                </label>
+                <button type="button" id="toggleAdminPasswordBtn" style="background: none; border: none; font-size: 0.78125rem; color: var(--gold-700); cursor: pointer; padding: 0;">
+                  <i class="fa-regular fa-eye" id="toggleAdminPasswordIcon"></i> Show
+                </button>
+              </div>
+              <input type="password" id="adminAuthPasswordInput" class="form-control" placeholder="Enter administrative passcode" required autocomplete="current-password">
+            </div>
+
+            <div style="background: var(--ivory-100); border: 1px dashed var(--border-gold); border-radius: var(--radius-sm); padding: 10px 14px; font-size: 0.78125rem; color: var(--charcoal-700); text-align: left; margin-bottom: 18px; display: flex; align-items: flex-start; gap: 8px;">
+              <i class="fa-solid fa-circle-info" style="color: var(--gold-600); margin-top: 2px;"></i>
+              <div>
+                <strong>Default Passcode:</strong> <code style="color: var(--emerald-900); font-weight: 700;">Madani@786</code>
+                <div style="font-size: 0.71875rem; color: var(--charcoal-400); margin-top: 2px;">(Can be changed to your personal secure password once logged in)</div>
+              </div>
+            </div>
+
+            <button type="submit" id="adminAuthSubmitBtn" class="btn btn-gold" style="width: 100%; justify-content: center; font-weight: 700; padding: 12px 20px;">
+              <i class="fa-solid fa-lock-open"></i> Authenticate & Enter Studio
+            </button>
+          </form>
+
+          <div style="margin-top: 18px; font-size: 0.75rem; color: var(--charcoal-400); display: flex; align-items: center; justify-content: center; gap: 6px;">
+            <i class="fa-solid fa-fingerprint" style="color: var(--emerald-700);"></i>
+            Protected by Session Hashing & Brute-Force Rate Limiter
+          </div>
+        </div>
       </div>
     </div>
   </div>
